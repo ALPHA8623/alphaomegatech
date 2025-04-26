@@ -1,0 +1,51 @@
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #FFD700;
+}
+header {
+  text-align: center;
+  background-color: #111;
+  padding: 40px 20px;
+}
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 2.5em;
+}
+main {
+  padding: 40px 20px;
+}
+section {
+  margin-bottom: 40px;
+}
+h2 {
+  color: #FFF;
+  font-size: 1.8em;
+}
+a {
+  color: #FFD700;
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+ul li {
+  margin: 10px 0;
+}
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  text-decoration: none;
+}
