@@ -31,7 +31,7 @@
   } else {
    messageDiv.classList.add('bot-message');
    messageDiv.innerHTML = `
-    <img src="assets/img/orionis-avatar.jpg" alt="Orionis Avatar" class="bot-avatar">
+    <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
     <div class="message-content">${message}</div>
    `;
   }
@@ -44,7 +44,7 @@
   const typingDiv = document.createElement('div');
   typingDiv.classList.add('chatbot-message', 'bot-message', 'typing-indicator');
   typingDiv.innerHTML = `
-   <img src="assets/img/orionis-avatar.jpg" alt="Orionis Avatar" class="bot-avatar">
+   <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
    <div class="message-content">
     <span class="typing-dot"></span>
     <span class="typing-dot"></span>
