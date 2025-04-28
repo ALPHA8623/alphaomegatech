@@ -80,7 +80,7 @@ function sendMessage() {
   }, 500);
 }
 
-// Generar respuesta
+// Generar respuesta del bot
 function generateResponse(userInput) {
   const text = userInput.toLowerCase();
   let response = "";
@@ -91,4 +91,51 @@ function generateResponse(userInput) {
     response = "Podemos automatizar tus procesos para ahorrar tiempo y maximizar eficiencia. 🚀";
   } else if (text.includes("marketing") || text.includes("clientes")) {
     response = "Ofrecemos marketing digital automatizado para captar y fidelizar clientes.";
-  } else if (text.includes("ia") || text.includes("inteligencia
+  } else if (text.includes("ia") || text.includes("inteligencia artificial")) {
+    response = "Implementamos soluciones de Inteligencia Artificial para tu empresa. 🤖";
+  } else if (text.includes("contenido") || text.includes("creación")) {
+    response = "Creamos contenido atractivo utilizando inteligencia artificial adaptado a tu marca.";
+  } else if (text.includes("cita") || text.includes("whatsapp")) {
+    response = "Agenda una cita aquí 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a> o síguenos en Instagram [@alphaomegatech.j1]";
+  } else {
+    response = "Actualmente no puedo responder a esa consulta aquí. Escríbenos 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a>.";
+  }
+
+  sendBotMessage(response);
+}
+
+// Enviar respuesta del bot
+function sendBotMessage(text) {
+  addMessage(text, false, true);
+}
+
+// Enviar mensaje al presionar Enter
+chatbotInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+});
+
+// Enviar mensaje al hacer click en el botón
+chatbotSend.addEventListener('click', sendMessage);
+
+// Detectar inactividad (2 minutos)
+let inactivityTimer;
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => {
+    sendBotMessage("¿Sigues ahí? Estoy aquí para ayudarte cuando quieras. 🚀");
+  }, 120000); // 2 minutos
+}
+document.addEventListener('mousemove', resetInactivityTimer);
+document.addEventListener('keypress', resetInactivityTimer);
+
+// Activar modo noche automáticamente
+function activateNightMode() {
+  const hour = new Date().getHours();
+  if (hour >= 19 || hour < 7) {
+    document.body.style.backgroundColor = "#0a0a0a";
+    document.body.style.color = "#bfa84c";
+  }
+}
+activateNightMode();
