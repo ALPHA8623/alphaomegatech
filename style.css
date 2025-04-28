@@ -207,6 +207,7 @@ body {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   margin-bottom: 0.5rem;
+  word-wrap: break-word; /* Para evitar que los mensajes largos se salgan del contenedor */
  }
  .user-message {
   background-color: #D4AF37;
@@ -232,4 +233,15 @@ body {
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
   cursor: pointer;
+ }
+ /* Estilos para la imagen del chatbot */
+ .chatbot-message.with-image {
+  display: flex;
+  align-items: center;
+ }
+ .chatbot-message.with-image img {
+  max-width: 50px; /* Ajusta el tamaño según necesites */
+  max-height: 50px;
+  border-radius: 50%; /* Para hacerlo circular */
+  margin-right: 0.5rem;
  }
