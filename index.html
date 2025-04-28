@@ -81,19 +81,19 @@
     <p>© 2025 ALPHAOMEGATECH. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Botón flotante WhatsApp -->
+  <!-- Botón WhatsApp flotante -->
   <a class="whatsapp" href="https://wa.me/1234567890" target="_blank">💬</a>
 
   <!-- Chatbot ORIONIS -->
   <div class="chatbot" id="chatbot">
     <div class="chatbot-header">
-      <span>🤖 ORIONIS</span>
-      <button class="chatbot-toggle" onclick="toggleChatbot()">✖</button>
+      <span>¿Necesitas ayuda?</span>
+      <button class="chatbot-toggle" onclick="toggleChatbot()">X</button>
     </div>
     <div class="chatbot-messages" id="chatbot-messages"></div>
     <div class="chatbot-input">
       <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
-      <button id="chatbot-send">Enviar</button>
+      <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
     </div>
   </div>
 
@@ -101,7 +101,7 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-  <!-- Scripts principales -->
+  <!-- Scripts -->
   <script>
     AOS.init();
     particlesJS.load('particles-js', 'particles.json', function() {
