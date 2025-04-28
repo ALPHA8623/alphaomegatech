@@ -30,9 +30,11 @@ function addMessage(message, isUser = false) {
     messageDiv.textContent = message;
   } else {
     messageDiv.classList.add('bot-message');
-    messageDiv.innerHTML = `
-      <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
-      <div class="message-content">${message}</div>
+   messageDiv.innerHTML = `
+  <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
+  <div class="message-content">${message}</div>
+`;
+
     `;
   }
   chatbotMessages.appendChild(messageDiv);
