@@ -49,22 +49,4 @@ function toggleMenu() {
   imageUrl = "bot_icon.png";
   } else if (message.includes("marketing") && message.includes("digital")) {
   response = "Nuestro marketing digital automatizado te ayuda a llegar a más clientes y aumentar tus ventas.";
-  imageUrl = "bot_icon.png";
-  } else if (message.includes("ia") || message.includes("inteligencia artificial")) {
-  response = "La inteligencia artificial es nuestra especialidad. ¿Qué te interesa saber: aplicaciones, beneficios, riesgos?";
-  imageUrl = "bot_icon.png";
-  } else if (message.includes("cita") || message.includes("agendar")) {
-  response = "Puedes agendar una cita a través de WhatsApp al [número de teléfono] o en nuestro Instagram [@alphaomegatech.j1].";
-  imageUrl = "bot_icon.png";
-  } else if (message.includes("gracias")) {
-  response = ["De nada.", "¡Un placer ayudarte!", "A tu servicio."][Math.floor(Math.random() * 3)];
-  imageUrl = "bot_icon.png";
-  } else if (message.includes("adios") || message.includes("chao") || message.includes("hasta luego")) {
-  response = ["¡Hasta luego!", "¡Que tengas un excelente día!", "¡Nos vemos pronto!"][Math.floor(Math.random() * 3)];
-  imageUrl = "bot_icon.png";
-  } else if (message.includes("que es la ia")) {
-  response = "¿Qué tipo de IA te interesa más? La IA Generativa, la IA Analítica o la IA Automatización";
-  imageUrl = "bot_icon.png";
-  } else if (message.includes("que es la ia generativa")) {
-  response = "La IA Generativa es un tipo de inteligencia artificial que puede generar nuevo contenido, como texto, imágenes, música y otros tipos de datos. ¿Te gustaría saber más sobre sus aplicaciones?";
-  imageUrl = "
+  imageUrl = "bot_icon
