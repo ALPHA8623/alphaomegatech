@@ -5,48 +5,28 @@ function toggleMenu() {
 }
 
 // --- CHATBOT ORIONIS ---
-// Elementos principales
+// Elementos
 const chatbot = document.getElementById('chatbot');
 const chatbotMessages = document.getElementById('chatbot-messages');
 const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSend = document.getElementById('chatbot-send');
 
-let typingIndicator;
-let firstInteraction = true;
-
 // Mostrar/Ocultar chatbot
 function toggleChatbot() {
   chatbot.classList.toggle('active');
-  if (chatbot.classList.contains('active') && firstInteraction) {
-    setTimeout(() => {
-      sendBotMessage("¡Hola humano! Soy ORIONIS 🤖, tu asistente de automatización. ¿En qué puedo ayudarte hoy?");
-      firstInteraction = false;
-    }, 500);
-  }
 }
 
-// Función para agregar mensajes
-function addMessage(message, isUser = false, isBot = false) {
+// Agregar mensaje al chat
+function addMessage(message, isUser = false) {
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('chatbot-message');
-  
-  if (isUser) {
-    messageDiv.classList.add('user-message');
-    messageDiv.textContent = message;
-  } else if (isBot) {
-    messageDiv.innerHTML = `
-      <div style="display: flex; align-items: center;">
-        <img src="assets/img/orionis-avatar.png" alt="Orionis" style="width:30px;height:30px;border-radius:50%;margin-right:8px;">
-        <span>${message}</span>
-      </div>
-    `;
-  }
-  
+  if (isUser) messageDiv.classList.add('user-message');
+  messageDiv.textContent = message;
   chatbotMessages.appendChild(messageDiv);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-// Mostrar indicador de "escribiendo..."
+// Simular "Orionis está escribiendo..."
 function showTyping() {
   typingIndicator = document.createElement('div');
   typingIndicator.classList.add('chatbot-message');
@@ -55,7 +35,7 @@ function showTyping() {
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-// Ocultar "escribiendo..."
+// Quitar "Orionis está escribiendo..."
 function hideTyping() {
   if (typingIndicator) {
     chatbotMessages.removeChild(typingIndicator);
@@ -63,11 +43,11 @@ function hideTyping() {
   }
 }
 
-// Enviar mensaje del usuario
+// Enviar mensaje
 function sendMessage() {
   const userMessage = chatbotInput.value.trim();
   if (userMessage === '') return;
-  
+
   addMessage(userMessage, true);
   chatbotInput.value = '';
 
@@ -80,57 +60,50 @@ function sendMessage() {
   }, 500);
 }
 
-// Generar respuesta del bot
+// Generar respuesta del chatbot
 function generateResponse(userInput) {
   const text = userInput.toLowerCase();
   let response = "";
 
   if (text.includes("hola") || text.includes("buenas")) {
-    response = "¡Hola! ¿Buscas servicios de automatización, IA o marketing?";
+    response = "¡Hola! ¿Cómo podemos asistirte hoy?";
   } else if (text.includes("automatización") || text.includes("optimizar")) {
-    response = "Podemos automatizar tus procesos para ahorrar tiempo y maximizar eficiencia. 🚀";
+    response = "Podemos automatizar tus procesos para ahorrar tiempo y reducir errores.";
   } else if (text.includes("marketing") || text.includes("clientes")) {
-    response = "Ofrecemos marketing digital automatizado para captar y fidelizar clientes.";
+    response = "Ofrecemos marketing digital automatizado para captar más clientes.";
   } else if (text.includes("ia") || text.includes("inteligencia artificial")) {
-    response = "Implementamos soluciones de Inteligencia Artificial para tu empresa. 🤖";
-  } else if (text.includes("contenido") || text.includes("creación")) {
-    response = "Creamos contenido atractivo utilizando inteligencia artificial adaptado a tu marca.";
+    response = "La IA es nuestra especialidad. ¿Sobre qué tema específico te gustaría saber más?";
   } else if (text.includes("cita") || text.includes("whatsapp")) {
-    response = "Agenda una cita aquí 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a> o síguenos en Instagram [@alphaomegatech.j1]";
+    response = "Agenda tu cita aquí 👉 [WhatsApp](https://wa.me/1234567890) o síguenos en Instagram [@alphaomegatech.j1].";
   } else {
-    response = "Actualmente no puedo responder a esa consulta aquí. Escríbenos 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a>.";
+    response = "Actualmente no puedo responder esa consulta aquí. Escríbenos 👉 [WhatsApp](https://wa.me/1234567890).";
   }
 
-  sendBotMessage(response);
+  addMessage(response);
 }
 
-// Enviar respuesta del bot
-function sendBotMessage(text) {
-  addMessage(text, false, true);
-}
-
-// Enviar mensaje al presionar Enter
-chatbotInput.addEventListener('keypress', function (e) {
+// Capturar Enter para enviar mensaje
+chatbotInput.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
     sendMessage();
   }
 });
 
-// Enviar mensaje al hacer click en el botón
+// Botón enviar
 chatbotSend.addEventListener('click', sendMessage);
 
-// Detectar inactividad (2 minutos)
+// Inactividad (2 minutos)
 let inactivityTimer;
 function resetInactivityTimer() {
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(() => {
-    sendBotMessage("¿Sigues ahí? Estoy aquí para ayudarte cuando quieras. 🚀");
+    addMessage("¿Sigues ahí? Puedes seguir escribiendo o contactarnos en WhatsApp.");
   }, 120000); // 2 minutos
 }
 document.addEventListener('mousemove', resetInactivityTimer);
-document.addEventListener('keypress', resetInactivityTimer);
+document.addEventListener('keydown', resetInactivityTimer);
 
-// Activar modo noche automáticamente
+// Activar modo noche automático
 function activateNightMode() {
   const hour = new Date().getHours();
   if (hour >= 19 || hour < 7) {
