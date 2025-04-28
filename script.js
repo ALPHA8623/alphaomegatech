@@ -6,13 +6,18 @@
 
  // --- CHATBOT ORIONIS ---
  // Elementos
- const chatbot = document.querySelector('.chatbot');
+ const chatbot = document.getElementById('chatbot');
  const chatbotMessages = document.getElementById('chatbot-messages');
  const chatbotInput = document.getElementById('chatbot-input');
  const chatbotSend = document.querySelector('.chatbot-input button');
+ const chatbotToggle = document.querySelector('.chatbot-header .chatbot-toggle');
 
- // Mostrar/Ocultar Chatbot (Si deseas un botón externo para esto)
+ // Estado del Chatbot
+ let isChatbotOpen = false;
+
+ // Mostrar/Ocultar Chatbot
  function toggleChatbot() {
+  isChatbotOpen = !isChatbotOpen;
   chatbot.classList.toggle('active');
  }
 
@@ -20,26 +25,41 @@
  function addMessage(message, isUser = false) {
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('chatbot-message');
-  if (isUser) messageDiv.classList.add('user-message');
-  messageDiv.textContent = message;
+  if (isUser) {
+   messageDiv.classList.add('user-message');
+   messageDiv.textContent = message;
+  } else {
+   messageDiv.classList.add('bot-message');
+   messageDiv.innerHTML = `
+    <img src="assets/img/orionis-avatar.jpg" alt="Orionis Avatar" class="bot-avatar">
+    <div class="message-content">${message}</div>
+   `;
+  }
   chatbotMessages.appendChild(messageDiv);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
  }
 
  // Mostrar "escribiendo..."
  function showTyping() {
-  typingIndicator = document.createElement('div');
-  typingIndicator.classList.add('chatbot-message');
-  typingIndicator.textContent = "Orionis está escribiendo...";
-  chatbotMessages.appendChild(typingIndicator);
+  const typingDiv = document.createElement('div');
+  typingDiv.classList.add('chatbot-message', 'bot-message', 'typing-indicator');
+  typingDiv.innerHTML = `
+   <img src="assets/img/orionis-avatar.jpg" alt="Orionis Avatar" class="bot-avatar">
+   <div class="message-content">
+    <span class="typing-dot"></span>
+    <span class="typing-dot"></span>
+    <span class="typing-dot"></span>
+   </div>
+  `;
+  chatbotMessages.appendChild(typingDiv);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  return typingDiv;
  }
 
  // Quitar "escribiendo..."
- function hideTyping() {
-  if (typingIndicator) {
-  chatbotMessages.removeChild(typingIndicator);
-  typingIndicator = null;
+ function hideTyping(typingElement) {
+  if (typingElement) {
+   chatbotMessages.removeChild(typingElement);
   }
  }
 
@@ -48,17 +68,14 @@
   const userMessage = chatbotInput.value.trim();
   if (userMessage === '') return;
 
-  addMessage(userMessage, true); // Add user message
-  chatbotInput.value = ''; // Clear input
+  addMessage(userMessage, true);
+  chatbotInput.value = '';
 
-  // Simulate bot response with a delay
+  const typingIndicator = showTyping();
   setTimeout(() => {
-  showTyping();
-  setTimeout(() => {
-  hideTyping();
-  generateResponse(userMessage);
-  }, 1500); // Bot typing delay
-  }, 500); // Initial delay
+   hideTyping(typingIndicator);
+   generateResponse(userMessage);
+  }, 1500);
  }
 
  // Generar respuesta (SIMULATED AI)
@@ -67,51 +84,33 @@
   let response = "";
 
   if (text.includes("hola") || text.includes("buenas")) {
-  response = "¡Hola! ¿Cómo podemos asistirte hoy?";
+   response = "¡Hola! ¿Cómo podemos asistirte hoy?";
   } else if (text.includes("automatización") || text.includes("optimizar")) {
-  response = "Podemos automatizar tus procesos para ahorrar tiempo y reducir errores.";
+   response = "Podemos automatizar tus procesos para ahorrar tiempo y reducir errores.";
   } else if (text.includes("marketing") || text.includes("clientes")) {
-  response = "Ofrecemos marketing digital automatizado para captar más clientes.";
+   response = "Ofrecemos marketing digital automatizado para captar más clientes.";
   } else if (text.includes("ia") || text.includes("inteligencia artificial")) {
-  response = "La IA es nuestra especialidad. ¿Sobre qué tema específico te gustaría saber más?";
+   response = "La IA es nuestra especialidad. ¿Sobre qué tema específico te gustaría saber más?";
   } else if (text.includes("cita") || text.includes("whatsapp")) {
-  response = "Agenda tu cita aquí 👉 [WhatsApp](https://wa.me/1234567890) o síguenos en Instagram [@alphaomegatech.j1].";
+   response = "Agenda tu cita aquí 👉 [WhatsApp](https://wa.me/1234567890) o síguenos en Instagram [@alphaomegatech.j1].";
   } else {
-  response = "Actualmente no puedo responder esa consulta aquí. Escríbenos 👉 [WhatsApp](https://wa.me/1234567890).";
+   response = "Actualmente no puedo responder esa consulta aquí. Escríbenos 👉 [WhatsApp](https://wa.me/1234567890).";
   }
 
-  addMessage(response); // Add bot response
+  setTimeout(() => {
+   addMessage(response, false);
+  }, 800); // Simulate response delay
  }
 
  // Capturar Enter keypress
  chatbotInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
-  sendMessage();
+   sendMessage();
   }
  });
 
- // Inactividad
- let inactivityTimer;
+ // --- EVENT LISTENERS ---
+ chatbotToggle.addEventListener('click', toggleChatbot);
 
- function resetInactivityTimer() {
-  clearTimeout(inactivityTimer);
-  inactivityTimer = setTimeout(() => {
-  addMessage("¿Sigues ahí? Puedes seguir escribiendo o contactarnos en WhatsApp.");
-  }, 120000); // 2 min
- }
-
- document.addEventListener('mousemove', resetInactivityTimer);
- document.addEventListener('keypress', resetInactivityTimer);
-
- // Modo noche automático (basic)
- function activateNightMode() {
-  const hour = new Date().getHours();
-  if (hour >= 19 || hour < 7) {
-  document.body.style.backgroundColor = "#0a0a0a";
-  document.body.style.color = "#bfa84c";
-  }
- }
-
- // --- Iniciar ---
- resetInactivityTimer(); // Start inactivity timer
- activateNightMode(); // Check for night mode on load
+ // Inicialmente, el chatbot está cerrado
+ chatbot.classList.remove('active');
