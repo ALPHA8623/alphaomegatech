@@ -5,7 +5,6 @@
   --color-footer: #111111;
 }
 
-/* General */
 body {
   margin: 0;
   font-family: 'Poppins', 'Arial', sans-serif;
@@ -73,7 +72,6 @@ body {
 /* Hero */
 header.hero {
   text-align: center;
-  background: transparent;
   padding: 100px 20px;
   position: relative;
   z-index: 2;
@@ -93,7 +91,7 @@ p.subtitulo {
   font-size: 1.2em;
 }
 
-/* Servicios Grid */
+/* Servicios */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -102,11 +100,11 @@ p.subtitulo {
 }
 .card {
   background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 20px;
   width: 280px;
   text-align: center;
-  backdrop-filter: blur(10px);
   box-shadow: 0 0 10px var(--color-dorado);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
@@ -118,10 +116,6 @@ p.subtitulo {
 .card img {
   width: 100%;
   border-radius: 8px;
-}
-h2 {
-  text-align: center;
-  color: var(--color-blanco);
 }
 
 /* Secciones */
@@ -154,7 +148,7 @@ footer a {
   margin-left: 10px;
 }
 
-/* WhatsApp flotante */
+/* Botón flotante de WhatsApp */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -167,7 +161,7 @@ footer a {
   z-index: 1000;
 }
 
-/* Chatbot ORIONIS */
+/* Chatbot */
 .chatbot {
   position: fixed;
   bottom: 100px;
