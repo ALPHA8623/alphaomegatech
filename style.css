@@ -1,212 +1,487 @@
+/* Reset CSS (Opcional, pero recomendado para normalizar estilos entre navegadores) */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 html {
-  scroll-behavior: smooth;
-}
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #000;
-  color: #D4AF37;
-}
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  padding: 10px 20px;
-}
-.logo-nav {
-  width: 40px;
-  margin-right: 10px;
-}
-.logo-title {
-  display: flex;
-  align-items: center;
-}
-.title {
-  font-size: 1.2em;
-  color: #D4AF37;
-  font-weight: bold;
-}
-.menu-toggle {
-  font-size: 24px;
-  cursor: pointer;
-  display: none;
-}
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-.menu li a {
-  text-decoration: none;
-  color: #D4AF37;
-  font-weight: bold;
-}
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  .menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #111;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    padding: 10px 0;
-  }
-  .menu.active {
-    display: flex;
-  }
-  .menu li {
-    text-align: center;
-    padding: 10px 0;
-  }
+    scroll-behavior: smooth; /* Para el scroll suave */
 }
 
-header.hero {
-  text-align: center;
-  background-image: url('background.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 100px 20px;
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    line-height: 1.6;
 }
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
+
+/* Estilos Generales */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-.animate-logo {
-  animation: pulse 2s ease-in-out infinite alternate;
+
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
 }
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  100% { transform: scale(1.05); opacity: 1; }
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #ffd700;
 }
-.typewriter {
-  font-size: 2.5em;
-  border-right: 3px solid #D4AF37;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  animation: typing 4s steps(30, end) forwards;
+
+/* Header */
+header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-.card {
-  border-radius: 12px;
-  padding: 20px;
-  width: 280px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #D4AF3788;
-}
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-img {
-  width: 100%;
-  border-radius: 8px;
-}
-h2 {
-  text-align: center;
-  color: #fff;
-  position: relative;
-}
-h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: #D4AF37;
-  margin: 8px auto 0;
-  transition: width 0.3s;
-}
-h2:hover::after {
-  width: 100px;
-}
-a {
-  color: #D4AF37;
-  text-decoration: none;
-}
-.boton-ws {
-  background-color: #25D366;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  display: inline-block;
-  margin-top: 15px;
-}
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25D366;
-  color: white;
-  border-radius: 50%;
-  padding: 15px;
-  font-size: 24px;
-  text-decoration: none;
-  z-index: 10;
-}
-.pulse {
-  animation: pulse-ws 2s infinite;
-}
-@keyframes pulse-ws {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-footer {
-  text-align: center;
-  padding: 30px;
-  background-color: #111;
-  color: #777;
-}
-.testimonial {
-  display: none;
-  text-align: center;
-  font-style: italic;
-  color: #ccc;
-  padding: 10px;
-}
-@media screen and (max-width: 768px) {
-  .grid {
-    flex-direction: column;
+
+header .container {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-  }
-  .card {
-    width: 90%;
-  }
-  .typewriter {
-    font-size: 1.8em;
-  }
-  .subtitulo {
-    font-size: 1em;
-    padding: 0 10px;
-  }
-  .logo {
-    width: 90px;
-  }
-  header.hero {
-    padding: 60px 10px;
-  }
-  .boton-ws {
-    font-size: 0.9em;
-    padding: 10px 20px;
-  }
+}
+
+header .logo img {
+    height: 50px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+.menu-mobile {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+#hero {
+    background-color: #000000;
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Oculta el overflow para las partículas */
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Oscurece el fondo para mejor legibilidad */
+    z-index: 1;
+}
+
+#hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+}
+
+#hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Services Section */
+#servicios {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 4rem 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background-color: rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.service-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 215, 0, 0.3);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+/* Sobre Nosotros Section */
+#sobre-nosotros {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 4rem 0;
+}
+
+#sobre-nosotros p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.8;
+    margin-top: 1rem;
+}
+
+/* Contacto Section */
+#contacto {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.contact-container {
+    margin-top: 2rem;
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #25d366;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-button img {
+    height: 24px;
+    margin-right: 1rem;
+}
+
+.whatsapp-button:hover {
+    background-color: #128c7e;
+}
+
+#contacto p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+/* Chatbot */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #222;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.chatbot-header {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.chatbot-header img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.chatbot-header span {
+    font-weight: bold;
+}
+
+.chatbot-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chatbot-message {
+    background-color: #444;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.chatbot-input {
+    padding: 10px;
+    display: flex;
+}
+
+.chatbot-input input {
+    flex-grow: 1;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #555;
+    color: #fff;
+}
+
+.chatbot-input button {
+    background-color: #ffd700;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-input button:hover {
+    background-color: #ffc107;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin: 0 1rem;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+/* Animaciones AOS */
+[data-aos] {
+    opacity: 0;
+    transition-property: transform, opacity;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Media Queries (Responsive Design) */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .menu-mobile {
+        display: block;
+    }
+
+    #hero {
+        height: auto;
+        padding: 5rem 0;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #chatbot {
+        width: 90%;
+        max-height: 90vh;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Modo Noche (Ejemplo - La lógica real va en JavaScript) */
+body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+}
+
+body.dark-mode .section-title {
+    color: #aaa;
+}
+
+body.dark-mode .section-title::after {
+    background-color: #aaa;
+}
+
+body.dark-mode header {
+    background-color: #121212;
+}
+
+body.dark-mode nav a {
+    color: #eee;
+}
+
+body.dark-mode nav a:hover {
+    color: #aaa;
+}
+
+body.dark-mode .service-card {
+    background-color: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.2);
+}
+
+body.dark-mode .service-card:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+}
+
+body.dark-mode #chatbot {
+    background-color: #333;
+}
+
+body.dark-mode .chatbot-input input {
+    background-color: #444;
+    color: #ddd;
+}
+
+body.dark-mode .chatbot-input button {
+    background-color: #aaa;
+    color: #000;
+}
+
+body.dark-mode .chatbot-input button:hover {
+    background-color: #ccc;
 }
