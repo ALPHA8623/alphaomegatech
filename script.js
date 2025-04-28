@@ -5,31 +5,48 @@ function toggleMenu() {
 }
 
 // --- CHATBOT ORIONIS ---
-// Elementos
-const chatbot = document.querySelector('.chatbot');
+// Selección de elementos
+const chatbot = document.getElementById('chatbot');
 const chatbotMessages = document.getElementById('chatbot-messages');
 const chatbotInput = document.getElementById('chatbot-input');
-const chatbotSend = document.querySelector('.chatbot-input button');
+const chatbotSend = document.getElementById('chatbot-send');
 
-// Conectar botón "Enviar"
-chatbotSend.addEventListener('click', sendMessage);
+let typingIndicator;
+let firstInteraction = true;
 
 // Mostrar/Ocultar Chatbot
 function toggleChatbot() {
   chatbot.classList.toggle('active');
+  if (chatbot.classList.contains('active') && firstInteraction) {
+    setTimeout(() => {
+      sendBotMessage("¡Hola humano! Soy ORIONIS 🤖, tu asistente de automatización. ¿En qué puedo ayudarte hoy?");
+      firstInteraction = false;
+    }, 500);
+  }
 }
 
-// Agregar mensaje al chat
-function addMessage(message, isUser = false) {
+// Función para agregar mensajes
+function addMessage(message, isUser = false, isBot = false) {
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('chatbot-message');
-  if (isUser) messageDiv.classList.add('user-message');
-  messageDiv.textContent = message;
+  
+  if (isUser) {
+    messageDiv.classList.add('user-message');
+    messageDiv.textContent = message;
+  } else if (isBot) {
+    messageDiv.innerHTML = `
+      <div style="display: flex; align-items: center;">
+        <img src="assets/img/orionis-avatar.png" alt="Orionis" style="width:30px;height:30px;border-radius:50%;margin-right:8px;">
+        <span>${message}</span>
+      </div>
+    `;
+  }
+  
   chatbotMessages.appendChild(messageDiv);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-// Mostrar escribiendo
+// Mostrar indicador "Orionis está escribiendo..."
 function showTyping() {
   typingIndicator = document.createElement('div');
   typingIndicator.classList.add('chatbot-message');
@@ -38,7 +55,7 @@ function showTyping() {
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-// Quitar escribiendo
+// Eliminar indicador de escribiendo
 function hideTyping() {
   if (typingIndicator) {
     chatbotMessages.removeChild(typingIndicator);
@@ -46,10 +63,11 @@ function hideTyping() {
   }
 }
 
-// Enviar mensaje
+// Enviar mensaje del usuario
 function sendMessage() {
   const userMessage = chatbotInput.value.trim();
   if (userMessage === '') return;
+  
   addMessage(userMessage, true);
   chatbotInput.value = '';
 
@@ -62,47 +80,57 @@ function sendMessage() {
   }, 500);
 }
 
-// Generar respuesta
+// Responder basado en texto
 function generateResponse(userInput) {
   const text = userInput.toLowerCase();
   let response = "";
 
   if (text.includes("hola") || text.includes("buenas")) {
-    response = "¡Hola! ¿Cómo podemos asistirte hoy?";
+    response = "¡Hola! ¿Buscas servicios de automatización, IA o marketing?";
   } else if (text.includes("automatización") || text.includes("optimizar")) {
-    response = "Podemos automatizar tus procesos para ahorrar tiempo y reducir errores.";
+    response = "Podemos automatizar tus procesos para ahorrar tiempo y maximizar eficiencia. 🚀";
   } else if (text.includes("marketing") || text.includes("clientes")) {
-    response = "Ofrecemos marketing digital automatizado para captar más clientes.";
+    response = "Ofrecemos marketing digital automatizado para captar y fidelizar clientes.";
   } else if (text.includes("ia") || text.includes("inteligencia artificial")) {
-    response = "La IA es nuestra especialidad. ¿Sobre qué tema específico te gustaría saber más?";
+    response = "Implementamos soluciones de Inteligencia Artificial para tu empresa. 🤖";
+  } else if (text.includes("contenido") || text.includes("creación")) {
+    response = "Creamos contenido atractivo utilizando inteligencia artificial adaptado a tu marca.";
   } else if (text.includes("cita") || text.includes("whatsapp")) {
-    response = "Agenda tu cita aquí 👉 [WhatsApp](https://wa.me/1234567890) o síguenos en Instagram [@alphaomegatech.j1].";
+    response = "Agenda una cita aquí 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a> o síguenos en Instagram [@alphaomegatech.j1]";
   } else {
-    response = "Actualmente no puedo responder esa consulta aquí. Escríbenos 👉 [WhatsApp](https://wa.me/1234567890).";
+    response = "Actualmente no puedo responder a esa consulta aquí, pero puedes contactarnos en 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a>.";
   }
 
-  addMessage(response);
+  sendBotMessage(response);
 }
 
-// Capturar Enter
+// Enviar mensaje de bot
+function sendBotMessage(text) {
+  addMessage(text, false, true);
+}
+
+// Enviar al presionar Enter
 chatbotInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     sendMessage();
   }
 });
 
-// Inactividad
+// Enviar con botón
+chatbotSend.addEventListener('click', sendMessage);
+
+// Inactividad (2 minutos sin interacción)
 let inactivityTimer;
 function resetInactivityTimer() {
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(() => {
-    addMessage("¿Sigues ahí? Puedes seguir escribiendo o contactarnos en WhatsApp.");
-  }, 120000); // 2 min
+    sendBotMessage("¿Sigues ahí? Estoy aquí para ayudarte cuando quieras. 🚀");
+  }, 120000); // 2 minutos
 }
 document.addEventListener('mousemove', resetInactivityTimer);
 document.addEventListener('keypress', resetInactivityTimer);
 
-// Modo noche automático
+// Activar modo noche
 function activateNightMode() {
   const hour = new Date().getHours();
   if (hour >= 19 || hour < 7) {
