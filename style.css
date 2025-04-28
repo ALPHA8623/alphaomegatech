@@ -1,15 +1,17 @@
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #000;
-  color: #D4AF37; /* dorado mate */
+  font-family: 'Montserrat', sans-serif; /* A modern sans-serif */
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #050505; /* A slightly softer black */
+  color: #f0e68c; /* A slightly brighter gold, for better readability */
  }
  .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
-  padding: 10px 20px;
+  background-color: #151515; /* A darker shade for contrast */
+  padding: 1rem 2rem;
  }
  .logo-nav {
   width: 40px;
@@ -20,9 +22,10 @@ body {
   align-items: center;
  }
  .title {
-  font-size: 1.2em;
-  color: #D4AF37;
-  font-weight: bold;
+  font-size: 1.4em;
+  font-family: 'Playfair Display', serif; /* A elegant serif for headings */
+  font-weight: 700;
+  color: #f0e68c;
  }
  .menu-toggle {
   font-size: 24px;
@@ -32,11 +35,11 @@ body {
  .menu {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
  }
  .menu li a {
   text-decoration: none;
-  color: #D4AF37;
+  color: #e0d970; /* A slightly different gold for links */
   font-weight: bold;
  }
  @media (max-width: 768px) {
@@ -47,7 +50,7 @@ body {
   display: none;
   flex-direction: column;
   width: 100%;
-  background-color: #111;
+  background-color: #151515;
   position: absolute;
   top: 60px;
   left: 0;
@@ -66,7 +69,7 @@ body {
   background-image: url('background.jpg');
   background-size: cover;
   background-position: center;
-  padding: 100px 20px;
+  padding: 8rem 2rem;
  }
  .logo {
   width: 120px;
@@ -81,24 +84,28 @@ body {
  }
  h1.titulo {
   font-size: 2.5em;
+  font-family: 'Playfair Display', serif; /* A elegant serif for headings */
+  font-weight: 700;
+  color: #f0e68c;
  }
  .grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1.5rem;
   justify-content: center;
  }
  .card {
-  background-color: #111;
+  background-color: #151515;
   border-radius: 12px;
-  padding: 20px;
+  padding: 1.5rem;
   width: 280px;
   text-align: center;
   transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* A subtle shadow for depth */
  }
  .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px #D4AF3788;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* A stronger shadow on hover */
  }
  img {
   width: 100%;
@@ -106,15 +113,17 @@ body {
  }
  h2 {
   text-align: center;
+  font-family: 'Playfair Display', serif; /* A elegant serif for headings */
+  font-weight: 700;
   color: #fff;
  }
  a {
-  color: #D4AF37;
+  color: #e0d970; /* A slightly different gold for links */
   text-decoration: none;
  }
  .boton-ws {
-  background-color: #25D366;
-  color: white;
+  background-color: #25D366; /* Keep the green for contrast and action */
+  color: #fff;
   padding: 12px 24px;
   border-radius: 30px;
   display: inline-block;
@@ -134,8 +143,8 @@ body {
  }
  footer {
   text-align: center;
-  padding: 30px;
-  background-color: #111;
+  padding: 2rem;
+  background-color: #151515;
   color: #777;
  }
  @media screen and (max-width: 768px) {
@@ -167,70 +176,74 @@ body {
  /* --- Chatbot Styles --- */
  .chatbot {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: #fff;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: #151515; /* Darker background */
+  color: #f0e68c;
   border-radius: 0.5rem;
   box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  width: 300px;
-  max-height: 400px;
+  width: 320px;
+  max-height: 450px;
   display: flex;
   flex-direction: column;
   z-index: 1000;
  }
  .chatbot-header {
-  background-color: #111;
-  color: #fff;
-  padding: 1rem;
+  background-color: #222; /* Even darker header */
+  color: #f0e68c;
+  padding: 0.8rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: bold;
  }
  .chatbot-toggle {
   background: none;
   border: none;
-  color: #fff;
+  color: #f0e68c;
   font-size: 1.2rem;
   cursor: pointer;
  }
  .chatbot-messages {
   flex-grow: 1;
-  padding: 1rem;
+  padding: 0.8rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
  }
  .chatbot-message {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #222;
+  color: #f0e68c;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.6rem;
   word-wrap: break-word; /* Para evitar que los mensajes largos se salgan del contenedor */
  }
  .user-message {
-  background-color: #D4AF37;
-  color: #fff;
+  background-color: #f0e68c;
+  color: #222;
   align-self: flex-end;
  }
  .chatbot-input {
   display: flex;
-  padding: 0.5rem;
-  border-top: 1px solid #ccc;
+  padding: 0.4rem;
+  border-top: 1px solid #333; /* A subtle border */
  }
  .chatbot-input input {
   flex-grow: 1;
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #222;
+  color: #f0e68c;
  }
  .chatbot-input button {
-  background-color: #111;
-  color: #fff;
+  background-color: #333;
+  color: #f0e68c;
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   margin-left: 0.5rem;
   cursor: pointer;
  }
