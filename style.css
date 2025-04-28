@@ -333,9 +333,10 @@
   align-items: flex-start;
  }
 
- .bot-message img.bot-avatar {
-  width: 40px;
-  height: 40px;
+ .bot-message img.bot-message img.bot-avatar {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin-right: 10px;
-  object
+  vertical-align: middle;
+}
