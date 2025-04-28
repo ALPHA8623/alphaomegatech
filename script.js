@@ -1,17 +1,7 @@
-// Función para mostrar/ocultar el menú en pantallas pequeñas
 function toggleMenu() {
     const menu = document.getElementById('menu');
     menu.classList.toggle('active');
 }
-
-// Opcional: Cerrar el menú si se hace clic en un enlace (en dispositivos móviles)
-const menuLinks = document.querySelectorAll('#menu a');
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        const menu = document.getElementById('menu');
-        menu.classList.remove('active');
-    });
-});
 
 // Chatbot
 const chatbot = document.querySelector('.chatbot');
@@ -45,4 +35,38 @@ const chatbotResponses = {
     "marketing": "Nuestro Marketing Digital Automatizado te permite llegar a tu público de manera eficiente. ¿Quieres conocer nuestras estrategias?",
     "contenido": "Creamos contenido atractivo y personalizado con IA para tu negocio. ¿Qué tipo de contenido necesitas?",
     "cita": "Puedes agendar una cita directamente a través de WhatsApp [número de teléfono] o visitando nuestro perfil de Instagram [@alphaomegatech.j1].",
-    "agendar cita": "Puedes agendar una cita directamente a través de WhatsApp [número de teléfono] o visitando nuestro perfil de Instagram [@alphaomegatech.j
+    "agendar cita": "Puedes agendar una cita directamente a través de WhatsApp [número de teléfono] o visitando nuestro perfil de Instagram [@alphaomegatech.j1].",
+    "gracias": "¡De nada! ¿Hay algo más en lo que pueda ayudarte?",
+    "adios": "¡Hasta luego! Que tengas un buen día.",
+    "ayuda": "Puedo responder preguntas sobre automatización empresarial, marketing digital automatizado, asistentes virtuales con IA y creación de contenido con IA.",
+    "mas informacion": "Claro, ¿sobre qué tema te gustaría saber más?",
+    "informacion adicional": "Claro, ¿sobre qué tema te gustaría saber más?",
+    "no entiendo": "Actualmente no puedo responder a su consulta en este espacio, pero estaré encantado de atenderle de manera más específica. Puede contactarme directamente en WhatsApp [número] o en Instagram [@alphaomegatech.j1] para resolver su duda."
+
+    // ... (Añade más preguntas y respuestas aquí)
+};
+
+// Función para procesar el mensaje del usuario y obtener la respuesta del chatbot
+function getChatbotResponse(message) {
+    message = message.toLowerCase();
+    return chatbotResponses[message] || "Lo siento, no entiendo tu pregunta.  Puedes contactarme directamente en WhatsApp [número] o en Instagram [@alphaomegatech.j1] para resolver tu duda.";
+}
+
+// Evento para enviar un mensaje
+chatbotSend.addEventListener('click', () => {
+    const message = chatbotInput.value;
+    if (message.trim() !== '') {
+        addMessage(message, true);
+        const response = getChatbotResponse(message);
+        setTimeout(() => {
+            addMessage(response);
+        }, 500); // Simula un retraso en la respuesta del bot
+        chatbotInput.value = '';
+    }
+});
+
+chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        chatbotSend.click();
+    }
+});
