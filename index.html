@@ -1,50 +1,458 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALPHAOMEGATECH</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <style>
-    body {
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    body.loaded {
-      opacity: 1;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALPHAOMEGATECH</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+        /* Tus estilos originales */
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Montserrat', 'Arial', sans-serif;
+            background-color: #000000;
+            color: #D4AF37;
+        }
+
+        a {
+            color: #D4AF37;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #FFD700;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111111;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-nav {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .title {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu li a {
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #FFD700;
+        }
+
+        .hero {
+            background: url('assets/img/fondo.jpg') no-repeat center center/cover;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 60px 30px;
+            border-radius: 15px;
+        }
+
+        .logo {
+            width: 140px;
+            animation: pulse 2s infinite alternate, glow 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            to {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+            }
+
+            to {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.9);
+            }
+        }
+
+        .titulo {
+            font-size: 2.8em;
+            margin-top: 25px;
+        }
+
+        .subtitulo {
+            font-size: 1.3em;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        .servicios,
+        .nosotros,
+        .contacto {
+            padding: 70px 20px;
+        }
+
+        .servicios h2,
+        .nosotros h2,
+        .contacto h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            color: #FFD700;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+        }
+
+        .card {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            border: 1px solid #D4AF37;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            margin: -20px;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+            box-shadow: 0 0 20px 10px transparent;
+        }
+
+        .card:hover::before,
+        .card:focus::before {
+            opacity: 1;
+            box-shadow: 0 0 20px 10px #D4AF3788;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.6em;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            padding: 18px;
+            border-radius: 50%;
+            font-size: 28px;
+            text-decoration: none;
+            z-index: 150;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .boton-ws {
+            background-color: #25D366;
+            padding: 14px 28px;
+            border-radius: 30px;
+            color: #fff;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton-ws:hover {
+            background-color: #1EAF59;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #111111;
+            font-size: 0.9em;
+            color: #777;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Chatbot */
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            max-height: 400px;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 200;
+            transform: translateY(0);
+            opacity: 1;
+            transition: none;
+        }
+
+        .chatbot.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            background-color: #111111;
+            color: #FFD700;
+            font-weight: bold;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .chatbot-header span {
+            font-size: 1.1em;
+        }
+
+        .chatbot-toggle {
+            background: none;
+            border: none;
+            color: #FFD700;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.1);
+            max-height: 250px;
+        }
+
+        .chatbot-message {
+            background-color: #333;
+            color: #eee;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            opacity: 1;
+            transform: translateY(0);
+            animation: none;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #D4AF37;
+            color: #111;
+            align-self: flex-end;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 0;
+        }
+
+        .bot-message {
+            display: flex;
+            align-items: flex-start;
+            border-top-left-radius: 0;
+            border-top-right-radius: 10px;
+        }
+
+        .bot-message img.bot-message img.bot-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .chatbot-input {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 15px;
+            margin-right: 10px;
+            font-size: 0.95em;
+            background-color: #fff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        .chatbot-input input:focus {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .chatbot-input button {
+            background-color: #25D366;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            line-height: 0;
+        }
+
+        .chatbot-input button:hover {
+            background-color: #1EAF59;
+            transform: scale(1.1);
+        }
+
+        .chatbot-input button:active {
+            background-color: #15803d;
+            transform: scale(0.9);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #D4AF37;
+            margin-right: 6px;
+            animation: typing 1.5s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes typing {
+            0% {
+                opacity: 0.4;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-3px);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body class="loaded">
 
   <div id="particles-js"></div>
 
-  <<nav class="navbar">
-   <div class="logo-title">
-    <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
-    <span class="title">ALPHAOMEGATECH</span>
-   </div>
-   <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
-   <ul class="menu" id="menu">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Sobre Nosotros</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-   </ul>
-  </nav>
-
-  <div class="chatbot" id="chatbot">
-   <div class="chatbot-header">
-    <span>¿Necesitas ayuda?</span>
-    <button class="chatbot-toggle">X</button>
-   </div>
-   <div class="chatbot-messages" id="chatbot-messages"></div>
-   <div class="chatbot-input">
-    <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
-    <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
-   </div>
-  </div>
+  <nav class="navbar">
+    <div class="logo-title">
+      <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
+      <span class="title">ALPHAOMEGATECH</span>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
+    <ul class="menu" id="menu">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Sobre Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 
   <header class="hero" data-aos="fade-down" data-aos-duration="800">
     <div class="overlay">
@@ -105,7 +513,9 @@
     <div class="chatbot-messages" id="chatbot-messages"></div>
     <div class="chatbot-input">
       <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
-      <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
+      <button class="chatbot-send" onclick="sendMessage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="m6 18 8-8"/></svg>
+      </button>
     </div>
   </div>
 
@@ -123,7 +533,124 @@
     });
   </script>
 
-  <script src="script.js"></script>
+  <script>
+    // --- MENÚ RESPONSIVO ---
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
+
+    // --- CHATBOT ORIONIS ---
+    // Elementos
+    const chatbot = document.getElementById('chatbot');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.querySelector('.chatbot-input button');
+    const chatbotToggle = document.querySelector('.chatbot-header .chatbot-toggle');
+
+    // Estado del Chatbot
+    let isChatbotOpen = false;
+
+    // Mostrar/Ocultar Chatbot
+    function toggleChatbot() {
+      isChatbotOpen = !isChatbotOpen;
+      chatbot.classList.toggle('active');
+    }
+
+    // Agregar mensaje al chat
+    function addMessage(message, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('chatbot-message');
+      if (isUser) {
+        messageDiv.classList.add('user-message');
+        messageDiv.textContent = message;
+      } else {
+        messageDiv.classList.add('bot-message');
+        messageDiv.innerHTML = `
+        <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
+        <div class="message-content">${message}</div>
+      `;
+      }
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Mostrar "escribiendo..."
+    function showTyping() {
+      const typingDiv = document.createElement('div');
+      typingDiv.classList.add('chatbot-message', 'bot-message', 'typing-indicator');
+      typingDiv.innerHTML = `
+        <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
+        <div class="message-content">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      `;
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      return typingDiv;
+    }
+
+    // Quitar "escribiendo..."
+    function hideTyping(typingElement) {
+      if (typingElement) {
+        chatbotMessages.removeChild(typingElement);
+      }
+    }
+
+    // Enviar mensaje
+    function sendMessage() {
+      const userMessage = chatbotInput.value.trim();
+      if (userMessage === '') return;
+
+      addMessage(userMessage, true);
+      chatbotInput.value = '';
+
+      const typingIndicator = showTyping();
+      setTimeout(() => {
+        hideTyping(typingIndicator);
+        generateResponse(userMessage);
+      }, 1500);
+    }
+
+    // Generar respuesta (simulada AI ORIONIS)
+    function generateResponse(userInput) {
+        const text = userInput.toLowerCase();
+        let response = "";
+
+        if (text.includes("hola") || text.includes("buenas")) {
+            response = "¡Hola! ¿Cómo podemos asistirte hoy?";
+        } else if (text.includes("automatización") || text.includes("optimizar")) {
+            response = "Podemos automatizar tus procesos para ahorrar tiempo y reducir errores.";
+        } else if (text.includes("marketing") || text.includes("clientes")) {
+            response = "Ofrecemos marketing digital automatizado para captar más clientes.";
+        } else if (text.includes("ia") || text.includes("inteligencia artificial")) {
+            response = "La IA es nuestra especialidad. ¿Sobre qué tema específico te gustaría saber más?";
+        } else if (text.includes("cita") || text.includes("whatsapp")) {
+            response = "Agenda tu cita aquí 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a> o síguenos en Instagram <a href='https://instagram.com/alphaomegatech.j1' target='_blank'>@alphaomegatech.j1</a>.";
+        } else {
+            response = "Actualmente no puedo responder esa consulta aquí. Escríbenos 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a>.";
+        }
+
+        setTimeout(() => {
+            addMessage(response, false);
+        }, 800); // Simular retardo de respuesta
+    }
+
+    // Capturar Enter keypress en el input
+    chatbotInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // --- EVENT LISTENERS ---
+    chatbotToggle.addEventListener('click', toggleChatbot);
+
+    // Inicialmente, el chatbot está cerrado
+    chatbot.classList.remove('active');
+  </script>
 
 </body>
 </html>
