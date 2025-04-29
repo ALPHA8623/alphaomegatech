@@ -65,7 +65,7 @@
 
   // Enviar mensaje
   function sendMessage() {
-    console.log("Función sendMessage() ejecutada."); // <---- ¡AÑADIDO PARA DEPURACIÓN!
+    console.log("Función sendMessage() ejecutada."); // <---- ¡Esta línea es útil para depurar!
     const userMessage = chatbotInput.value.trim();
     if (userMessage === '') return;
 
