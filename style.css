@@ -321,13 +321,11 @@ footer {
 .bot-message {
   display: flex;
   align-items: flex-start;
-  border-top-left-radius: 0;
-  border-top-right-radius: 10px;
 }
 
 .bot-message img.bot-message img.bot-avatar {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: middle;
