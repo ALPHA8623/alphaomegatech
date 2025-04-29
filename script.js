@@ -19,6 +19,7 @@ let isChatbotOpen = false;
 function toggleChatbot() {
   isChatbotOpen = !isChatbotOpen;
   chatbot.classList.toggle('active');
+  console.log('toggleChatbot llamado. isChatbotOpen:', isChatbotOpen, 'Clase active del chatbot:', chatbot.classList.contains('active')); // Para depuración
 }
 
 // Agregar mensaje al chat
@@ -30,11 +31,9 @@ function addMessage(message, isUser = false) {
     messageDiv.textContent = message;
   } else {
     messageDiv.classList.add('bot-message');
-   messageDiv.innerHTML = `
-  <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
-  <div class="message-content">${message}</div>
-`;
-
+    messageDiv.innerHTML = `
+      <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
+      <div class="message-content">${message}</div>
     `;
   }
   chatbotMessages.appendChild(messageDiv);
@@ -114,5 +113,5 @@ chatbotInput.addEventListener('keypress', function (e) {
 // --- EVENT LISTENERS ---
 chatbotToggle.addEventListener('click', toggleChatbot);
 
-// Inicialmente, el chatbot está cerrado
+// Inicialmente, el chatbot está cerrado (aseguramos que empiece oculto)
 chatbot.classList.remove('active');
