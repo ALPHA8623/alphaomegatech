@@ -324,8 +324,8 @@ footer {
 }
 
 .bot-message img.bot-message img.bot-avatar {
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 2px;
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: middle;
