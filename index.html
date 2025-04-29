@@ -1,117 +1,29 @@
-<!DOCTYPE html>
- <html lang="es">
- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALPHAOMEGATECH</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <style>
-   body {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-   }
-   body.loaded {
-    opacity: 1;
-   }
-  </style>
- </head>
- <body class="loaded">
-
-  <div id="particles-js"></div>
-
-  <nav class="navbar">
-   <div class="logo-title">
-    <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
-    <span class="title">ALPHAOMEGATECH</span>
-   </div>
-   <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
-   <ul class="menu" id="menu">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Sobre Nosotros</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-   </ul>
-  </nav>
-
-  <header class="hero" data-aos="fade-down" data-aos-duration="800">
-   <div class="overlay">
-    <img src="assets/img/logo.png" alt="Logo ALPHAOMEGATECH" class="logo animate-logo" />
-    <h1 class="titulo">Automatiza, conecta, crece.</h1>
-    <p class="subtitulo">Inteligencia Artificial, Automatización y Marketing de Alto Nivel</p>
-   </div>
-  </header>
-
-  <section class="servicios" id="servicios" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-in-out-quad">
-   <h2>Servicios</h2>
-   <div class="grid">
-    <div class="card" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
-     <img src="assets/img/img1.jpg" alt="Automatización Empresarial" />
-     <h3>Automatización Empresarial</h3>
-     <p>Optimiza tus procesos y ahorra tiempo con flujos inteligentes.</p>
-    </div>
-    <div class="card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
-     <img src="assets/img/img2.jpg" alt="Marketing Digital Automatizado" />
-     <h3>Marketing Digital Automatizado</h3>
-     <p>Campañas que trabajan solas mientras tú te enfocas en crecer.</p>
-    </div>
-    <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
-     <img src="assets/img/img3.jpg" alt="Asistentes Virtuales IA" />
-     <h3>Asistentes Virtuales IA</h3>
-     <p>Atiende 24/7 con chatbots y asistentes personalizados.</p>
-    </div>
-    <div class="card" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="600">
-     <img src="assets/img/img4.jpg" alt="Contenido IA" />
-     <h3>Contenido IA</h3>
-     <p>Crea textos, imágenes y publicaciones con inteligencia artificial.</p>
-    </div>
-   </div>
-  </section>
-
-  <section class="nosotros" id="nosotros" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-in-out-quad">
-   <h2>Sobre Nosotros</h2>
-   <p>En ALPHAOMEGATECH impulsamos negocios combinando tecnología, diseño y automatización de vanguardia.</p>
-  </section>
-
-  <section class="contacto" id="contacto" data-aos="fade-left" data-aos-duration="800" data-aos-easing="ease-in-out-quad">
-   <h2>Contáctanos</h2>
-   <p>¿Listo para llevar tu empresa al siguiente nivel?</p>
-   <a href="https://wa.me/1234567890" class="boton-ws" target="_blank">Escríbenos por WhatsApp</a>
-  </section>
-
-  <footer>
-   <p>© 2025 ALPHAOMEGATECH. Todos los derechos reservados.</p>
-  </footer>
-
-  <a class="whatsapp" href="https://wa.me/1234567890" target="_blank">💬</a>
-
-  <div class="chatbot" id="chatbot">
-   <div class="chatbot-header">
-    <span>¿Necesitas ayuda?</span>
-    <button class="chatbot-toggle">X</button>
-   </div>
-   <div class="chatbot-messages" id="chatbot-messages"></div>
-   <div class="chatbot-input">
-    <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
-    <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
-   </div>
+<nav class="navbar">
+  <div class="logo-title">
+   <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
+   <span class="title">ALPHAOMEGATECH</span>
   </div>
+  <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
+  <ul class="menu" id="menu">
+   <li><a href="#servicios">Servicios</a></li>
+   <li><a href="#nosotros">Sobre Nosotros</a></li>
+   <li><a href="#contacto">Contacto</a></li>
+  </ul>
+ </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+ <div class="chatbot" id="chatbot">
+  <div class="chatbot-header">
+   <span>¿Necesitas ayuda?</span>
+   <button class="chatbot-toggle">X</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages"></div>
+  <div class="chatbot-input">
+   <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
+   <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
+  </div>
+ </div>
 
-  <script>
-   AOS.init({
-    once: true, // Only animate elements once on scroll
-    duration: 600, // Default animation duration
-    easing: 'ease-out-cubic', // Default easing
-   });
-   particlesJS.load('particles-js', 'particles.json', function() {
-    console.log('particles.js loaded successfully.');
-   });
-  </script>
-
-  <script src="script.js"></script>
-
- </body>
- </html>
+ <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+ <script src="script.js"></script> </body>
+</html>
