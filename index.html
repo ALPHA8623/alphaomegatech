@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ALPHAOMEGATECH</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALPHAOMEGATECH</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body class="loaded">
 
   <div id="particles-js"></div>
 
   <nav class="navbar">
-    <div class="logo-title">
-      <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
-      <span class="title">ALPHAOMEGATECH</span>
-    </div>
-    <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
-    <ul class="menu" id="menu">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#nosotros">Sobre Nosotros</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
+   <div class="logo-title">
+    <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
+    <span class="title">ALPHAOMEGATECH</span>
+   </div>
+   <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
+   <ul class="menu" id="menu">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Sobre Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+   </ul>
   </nav>
+
+  <div class="chatbot" id="chatbot">
+   <div class="chatbot-header">
+    <span>¿Necesitas ayuda?</span>
+    <button class="chatbot-toggle">X</button>
+   </div>
+   <div class="chatbot-messages" id="chatbot-messages"></div>
+   <div class="chatbot-input">
+    <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
+    <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
+   </div>
+  </div>
 
   <header class="hero" data-aos="fade-down" data-aos-duration="800">
     <div class="overlay">
@@ -84,9 +105,7 @@
     <div class="chatbot-messages" id="chatbot-messages"></div>
     <div class="chatbot-input">
       <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
-      <button class="chatbot-send" onclick="sendMessage()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="m6 18 8-8"/></svg>
-      </button>
+      <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
     </div>
   </div>
 
