@@ -238,8 +238,10 @@ footer {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 320px;
-  max-height: 400px;
+  width: auto;
+  max-width: 90%;
+  height: auto;
+  max-height: 80vh;
   background: rgba(17, 17, 17, 0.95);
   backdrop-filter: blur(8px);
   border-radius: 15px;
