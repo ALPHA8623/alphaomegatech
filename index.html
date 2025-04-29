@@ -21,18 +21,30 @@
 
   <div id="particles-js"></div>
 
-  <nav class="navbar">
-    <div class="logo-title">
-      <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
-      <span class="title">ALPHAOMEGATECH</span>
-    </div>
-    <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
-    <ul class="menu" id="menu">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#nosotros">Sobre Nosotros</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+  <<nav class="navbar">
+   <div class="logo-title">
+    <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
+    <span class="title">ALPHAOMEGATECH</span>
+   </div>
+   <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();">🤖</div>
+   <ul class="menu" id="menu">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Sobre Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+   </ul>
+  </nav>
+
+  <div class="chatbot" id="chatbot">
+   <div class="chatbot-header">
+    <span>¿Necesitas ayuda?</span>
+    <button class="chatbot-toggle">X</button>
+   </div>
+   <div class="chatbot-messages" id="chatbot-messages"></div>
+   <div class="chatbot-input">
+    <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
+    <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
+   </div>
+  </div>
 
   <header class="hero" data-aos="fade-down" data-aos-duration="800">
     <div class="overlay">
