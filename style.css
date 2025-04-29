@@ -317,4 +317,8 @@ footer {
   background-color: #D4AF37;
   color: #111;
   align-self: flex-end;
-  border-top-left-radius: 5
+  border-top-left-radius: 5px;
+  border-top-right-radius: 0;
+}
+
+.bot-message {
