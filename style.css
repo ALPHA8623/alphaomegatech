@@ -1,4 +1,4 @@
-/* Tus estilos originales */
+* Tus estilos originales */
 body {
   margin: 0;
   font-family: 'Poppins', 'Montserrat', 'Arial', sans-serif;
@@ -239,13 +239,13 @@ footer {
   bottom: 20px;
   right: 20px;
   width: auto;
-  max-width: 90%;
+  max-width: 50%;
   height: auto;
-  max-height: 80vh;
+  max-height: 50vh;
   background: rgba(17, 17, 17, 0.95);
   backdrop-filter: blur(8px);
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -253,6 +253,7 @@ footer {
   transform: translateY(0);
   opacity: 1;
   transition: none;
+  font-size: 0.8em;
 }
 
 .chatbot.active {
@@ -264,7 +265,7 @@ footer {
   background-color: #111111;
   color: #FFD700;
   font-weight: bold;
-  padding: 15px;
+  padding: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -272,14 +273,14 @@ footer {
 }
 
 .chatbot-header span {
-  font-size: 1.1em;
+  font-size: 0.8em;
 }
 
 .chatbot-toggle {
   background: none;
   border: none;
   color: #FFD700;
-  font-size: 1.5em;
+  font-size: 1.2em;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
@@ -290,25 +291,25 @@ footer {
 
 .chatbot-messages {
   flex-grow: 1;
-  padding: 15px;
+  padding: 8px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.1);
-  max-height: 250px;
+  max-height: 150px;
 }
 
 .chatbot-message {
   background-color: #333;
   color: #eee;
-  margin-bottom: 12px;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 0.95em;
+  margin-bottom: 6px;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 0.75em;
   opacity: 1;
   transform: translateY(0);
   animation: none;
-  max-width: 80%;
+  max-width: 60%;
   word-wrap: break-word;
 }
 
@@ -316,7 +317,7 @@ footer {
   background-color: #D4AF37;
   color: #111;
   align-self: flex-end;
-  border-top-left-radius: 10px;
+  border-top-left-radius: 5px;
   border-top-right-radius: 0;
 }
 
@@ -329,12 +330,12 @@ footer {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 5px;
   vertical-align: middle;
 }
 
 .chatbot-input {
-  padding: 15px;
+  padding: 8px;
   border-top: 1px solid rgba(255, 215, 0, 0.2);
   display: flex;
   align-items: center;
@@ -343,35 +344,35 @@ footer {
 .chatbot-input input {
   flex: 1;
   border: none;
-  border-radius: 25px;
-  padding: 10px 15px;
-  margin-right: 10px;
-  font-size: 0.95em;
+  border-radius: 12.5px;
+  padding: 6px 10px;
+  margin-right: 5px;
+  font-size: 0.75em;
   background-color: #fff;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s ease;
   outline: none;
 }
 
 .chatbot-input input:focus {
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 0 5px rgba(212, 175, 55, 0.3);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03), 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 .chatbot-input button {
   background-color: #25D366;
   color: #fff;
-  padding: 10px 16px;
+  padding: 5px 8px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   font-size: 1.2em;
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 0;
   line-height: 0;
 }
@@ -384,7 +385,7 @@ footer {
 .chatbot-input button:active {
   background-color: #15803d;
   transform: scale(0.9);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.05);
 }
 
 .typing-indicator {
@@ -393,11 +394,11 @@ footer {
 }
 
 .typing-dot {
-  width: 8px;
-  height: 8px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background-color: #D4AF37;
-  margin-right: 6px;
+  margin-right: 3px;
   animation: typing 1.5s infinite;
 }
 
@@ -417,7 +418,7 @@ footer {
 
   50% {
     opacity: 1;
-    transform: translateY(-3px);
+    transform: translateY(-1px);
   }
 
   100% {
