@@ -274,6 +274,9 @@ footer {
 
 .chatbot-header span {
   font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .chatbot-toggle {
@@ -296,7 +299,7 @@ footer {
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.1);
-  max-height: 150px;
+  max-height: 200px; /* Aumentamos un poco la altura máxima */
 }
 
 .chatbot-message {
@@ -309,16 +312,9 @@ footer {
   opacity: 1;
   transform: translateY(0);
   animation: none;
-  max-width: 60%;
+  max-width: 70%; /* Permitimos mensajes un poco más anchos */
   word-wrap: break-word;
 }
 
 .user-message {
-  background-color: #D4AF37;
-  color: #111;
-  align-self: flex-end;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 0;
-}
-
-.bot-message {
+  background-
