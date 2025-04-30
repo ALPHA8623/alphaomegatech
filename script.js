@@ -4,24 +4,20 @@
     menu.classList.toggle('active');
   }
 
-  // --- CHATBOT ORIONIS ---
-  // Elementos
+  // --- CHATBOT ---
   const chatbot = document.getElementById('chatbot');
   const chatbotMessages = document.getElementById('chatbot-messages');
   const chatbotInput = document.getElementById('chatbot-input');
   const chatbotSend = document.querySelector('.chatbot-input button');
   const chatbotToggle = document.querySelector('.chatbot-header .chatbot-toggle');
 
-  // Estado del Chatbot
   let isChatbotOpen = false;
 
-  // Mostrar/Ocultar Chatbot
   function toggleChatbot() {
     isChatbotOpen = !isChatbotOpen;
     chatbot.classList.toggle('active');
   }
 
-  // Agregar mensaje al chat
   function addMessage(message, isUser = false) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('chatbot-message');
@@ -30,42 +26,32 @@
       messageDiv.textContent = message;
     } else {
       messageDiv.classList.add('bot-message');
-      messageDiv.innerHTML = `
-        <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
-        <div class="message-content">${message}</div>
-      `;
+      messageDiv.textContent = message;
     }
     chatbotMessages.appendChild(messageDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
-  // Mostrar "escribiendo..."
   function showTyping() {
     const typingDiv = document.createElement('div');
     typingDiv.classList.add('chatbot-message', 'bot-message', 'typing-indicator');
     typingDiv.innerHTML = `
-      <img src="assets/img/orionis-avatar.png" alt="Orionis Avatar" class="bot-avatar">
-      <div class="message-content">
-        <span class="typing-dot"></span>
-        <span class="typing-dot"></span>
-        <span class="typing-dot"></span>
-      </div>
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
     `;
     chatbotMessages.appendChild(typingDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     return typingDiv;
   }
 
-  // Quitar "escribiendo..."
   function hideTyping(typingElement) {
     if (typingElement) {
       chatbotMessages.removeChild(typingElement);
     }
   }
 
-  // Enviar mensaje
   function sendMessage() {
-    console.log("Función sendMessage() ejecutada."); // <---- ¡Esta línea es útil para depurar!
     const userMessage = chatbotInput.value.trim();
     if (userMessage === '') return;
 
@@ -76,45 +62,46 @@
     setTimeout(() => {
       hideTyping(typingIndicator);
       generateResponse(userMessage);
-    }, 1500);
+    }, 1000); // Simular un breve tiempo de espera
   }
 
-  // Generar respuesta (simulada AI ORIONIS)
   function generateResponse(userInput) {
-      const text = userInput.toLowerCase();
-      let response = "";
+    const text = userInput.toLowerCase();
+    let response = "";
 
-      if (text.includes("hola") || text.includes("buenas")) {
-          response = "¡Hola! ¿Cómo podemos asistirte hoy?";
-      } else if (text.includes("automatización") || text.includes("optimizar")) {
-          response = "Podemos automatizar tus procesos para ahorrar tiempo y reducir errores.";
-      } else if (text.includes("marketing") || text.includes("clientes")) {
-          response = "Ofrecemos marketing digital automatizado para captar más clientes.";
-      } else if (text.includes("ia") || text.includes("inteligencia artificial")) {
-          response = "La IA es nuestra especialidad. ¿Sobre qué tema específico te gustaría saber más?";
-      } else if (text.includes("cita") || text.includes("whatsapp")) {
-          response = "Agenda tu cita aquí 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a> o síguenos en Instagram <a href='https://instagram.com/alphaomegatech.j1' target='_blank'>@alphaomegatech.j1</a>.";
-      } else {
-          response = "Actualmente no puedo responder esa consulta aquí. Escríbenos 👉 <a href='https://wa.me/1234567890' target='_blank'>WhatsApp</a>.";
-      }
+    if (text.includes("hola") || text.includes("buenas") || text.includes("saludos")) {
+      response = "¡Hola! ¿En qué puedo ayudarte hoy?";
+    } else if (text.includes("servicio")) {
+      response = "Ofrecemos servicios de automatización empresarial, marketing digital automatizado, asistentes virtuales con IA y creación de contenido con IA. ¿Cuál de estos te interesa más?";
+    } else if (text.includes("automatización") || text.includes("procesos") || text.includes("optimizar")) {
+      response = "La automatización empresarial te ayuda a optimizar tus flujos de trabajo y ahorrar tiempo. Podemos automatizar tareas repetitivas y mejorar la eficiencia de tu negocio.";
+    } else if (text.includes("marketing digital") || text.includes("campañas") || text.includes("clientes") || text.includes("crecer")) {
+      response = "Nuestro marketing digital automatizado te permite llegar a más clientes y hacer crecer tu negocio de manera eficiente con campañas que trabajan de forma autónoma.";
+    } else if (text.includes("asistente virtual") || text.includes("chatbot") || text.includes("atender")) {
+      response = "Con nuestros asistentes virtuales con IA (chatbots), puedes atender a tus clientes las 24 horas del día, los 7 días de la semana, respondiendo preguntas y brindando soporte inmediato.";
+    } else if (text.includes("contenido") || text.includes("textos") || text.includes("imágenes") || text.includes("publicaciones") || text.includes("crear")) {
+      response = "Utilizamos inteligencia artificial para crear contenido atractivo y de alta calidad, como textos, imágenes y publicaciones para tus redes sociales y sitio web.";
+    } else if (text.includes("nosotros") || text.includes("quiénes sois") || text.includes("empresa")) {
+      response = "Somos ALPHAOMEGATECH, un equipo dedicado a impulsar negocios a través de la tecnología, el diseño y la automatización de vanguardia.";
+    } else if (text.includes("contacto") || text.includes("hablar") || text.includes("escribir")) {
+      response = "Puedes contactarnos a través de WhatsApp haciendo clic en el botón que aparece en la página o a través de nuestras redes sociales. ¡Estamos listos para ayudarte!";
+    } else if (text.includes("cita") || text.includes("reunión")) {
+      response = "Para agendar una cita, por favor contáctanos por WhatsApp. Te ayudaremos a encontrar el mejor momento para hablar.";
+    } else {
+      response = "Lo siento, no entendí tu pregunta. ¿Podrías reformularla o preguntar sobre nuestros servicios de automatización, marketing digital, asistentes virtuales o creación de contenido?";
+    }
 
-      setTimeout(() => {
-          addMessage(response, false);
-      }, 800); // Simular retardo de respuesta
+    setTimeout(() => {
+      addMessage(response, false);
+    }, 1200); // Simular un breve tiempo de respuesta del bot
   }
 
-  // Capturar Enter keypress en el input
   chatbotInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
       sendMessage();
     }
   });
 
-  // --- EVENT LISTENERS ---
-  const chatbotToggleElement = document.querySelector('.chatbot-header .chatbot-toggle');
-  if (chatbotToggleElement) {
-    chatbotToggleElement.addEventListener('click', toggleChatbot);
-  }
+  chatbotToggle.addEventListener('click', toggleChatbot);
 
-  // Inicialmente, el chatbot está cerrado
   chatbot.classList.remove('active');
