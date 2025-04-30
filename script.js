@@ -52,6 +52,7 @@
   }
 
   function sendMessage() {
+    console.log("Función sendMessage()");
     const userMessage = chatbotInput.value.trim();
     if (userMessage === '') return;
 
