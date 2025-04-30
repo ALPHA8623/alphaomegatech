@@ -194,7 +194,7 @@ a:hover {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #25d366; /* Verde de WhatsApp */
+  background-color: #25d366; /* Verde de WhatsApp (si quieres mantenerlo) */
   color: white;
   padding: 18px;
   border-radius: 50%;
@@ -210,10 +210,10 @@ a:hover {
 }
 
 .boton-ws {
-  background-color: #25d366; /* Verde de WhatsApp */
+  background-color: #25d366; /* Verde de WhatsApp (si quieres mantenerlo) */
+  color: #fff;
   padding: 14px 28px;
   border-radius: 30px;
-  color: #fff;
   font-weight: bold;
   display: inline-block;
   margin-top: 20px;
@@ -233,7 +233,7 @@ footer {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Chatbot */
+/* Chatbot - Estilo WhatsApp */
 .chatbot {
   position: fixed;
   bottom: 20px;
@@ -242,23 +242,6 @@ footer {
   max-width: 50%;
   height: auto;
   max-height: 50vh;
-  background: #0a0a0a; /* Fondo oscuro para el chatbot */
+  background: #f0f8f5; /* Fondo claro similar a WhatsApp */
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* Sombra dorada */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 200;
-  transform: translateY(0);
-  opacity: 1;
-  transition: none;
-  font-size: 0.8em;
-}
-
-.chatbot.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.chatbot-header {
-  background-color:
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0
