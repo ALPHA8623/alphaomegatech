@@ -2,25 +2,25 @@
 body {
   margin: 0;
   font-family: 'Poppins', 'Montserrat', 'Arial', sans-serif;
-  background-color: #e5ddd5; /* Fondo claro similar a WhatsApp */
-  color: #111; /* Texto oscuro como en WhatsApp */
+  background-color: #000000; /* Fondo negro original */
+  color: #D4AF37; /* Texto dorado original */
 }
 
 a {
-  color: #075e54; /* Color de enlace similar a WhatsApp */
+  color: #D4AF37; /* Color de enlace dorado original */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #128c7e;
+  color: #FFD700;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #128c7e; /* Barra superior verde de WhatsApp */
+  background-color: #111111; /* Barra de navegación oscura original */
   padding: 15px 20px;
   position: sticky;
   top: 0;
@@ -41,7 +41,6 @@ a:hover {
 .title {
   font-size: 1.4em;
   font-weight: bold;
-  color: #fff; /* Texto blanco en la barra superior */
 }
 
 .menu {
@@ -52,18 +51,13 @@ a:hover {
 
 .menu li a {
   font-weight: bold;
-  color: #fff; /* Texto blanco en el menú */
-}
-
-.menu li a:hover {
-  color: #f0f8f5;
 }
 
 .menu-toggle {
   display: none;
   font-size: 28px;
   cursor: pointer;
-  color: #fff; /* Icono del menú en blanco */
+  color: #FFD700;
 }
 
 .hero {
@@ -130,7 +124,7 @@ a:hover {
   text-align: center;
   margin-bottom: 30px;
   font-size: 2.2em;
-  color: #075e54; /* Verde para los títulos de sección */
+  color: #FFD700; /* Títulos de sección dorados */
 }
 
 .grid {
@@ -141,44 +135,66 @@ a:hover {
 }
 
 .card {
-  background: #fff;
-  border-radius: 8px;
+  background: rgba(17, 17, 17, 0.95); /* Tarjetas oscuras originales */
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
   overflow: hidden;
   width: 300px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   text-align: center;
   padding: 25px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+  border: 1px solid #D4AF37;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -20px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  box-shadow: 0 0 20px 10px transparent;
+}
+
+.card:hover::before,
+.card:focus::before {
+  opacity: 1;
+  box-shadow: 0 0 20px 10px #D4AF3788;
 }
 
 .card img {
   width: 100%;
-  border-radius: 6px;
+  border-radius: 12px;
   margin-bottom: 15px;
 }
 
 .card h3 {
   font-size: 1.6em;
-  color: #075e54;
+  color: #FFD700; /* Títulos de tarjeta dorados */
   margin-bottom: 10px;
 }
 
 .card p {
   font-size: 1em;
   line-height: 1.6;
-  color: #555;
 }
 
 .whatsapp {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #25d366; /* Verde de WhatsApp para el botón flotante */
+  background-color: #25d366; /* Verde de WhatsApp */
   color: white;
   padding: 18px;
   border-radius: 50%;
@@ -194,7 +210,7 @@ a:hover {
 }
 
 .boton-ws {
-  background-color: #25d366; /* Verde de WhatsApp para el botón de contacto */
+  background-color: #25d366; /* Verde de WhatsApp */
   padding: 14px 28px;
   border-radius: 30px;
   color: #fff;
@@ -211,10 +227,10 @@ a:hover {
 footer {
   text-align: center;
   padding: 30px;
-  background-color: #f0f8f5; /* Fondo muy claro para el footer */
+  background-color: #111111; /* Footer oscuro original */
   font-size: 0.9em;
   color: #777;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Chatbot */
@@ -226,9 +242,9 @@ footer {
   max-width: 50%;
   height: auto;
   max-height: 50vh;
-  background: #f0f8f5; /* Fondo claro para el chatbot */
+  background: #0a0a0a; /* Fondo oscuro para el chatbot */
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* Sombra dorada */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -245,26 +261,4 @@ footer {
 }
 
 .chatbot-header {
-  background-color: #128c7e; /* Encabezado verde de WhatsApp */
-  color: #fff;
-  font-weight: bold;
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.chatbot-header span {
-  font-size: 0.8em;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.chatbot-toggle {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.2em;
-  cursor:
+  background-color:
