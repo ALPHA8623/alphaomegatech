@@ -230,38 +230,4 @@ footer {
   background-color: #111111;
   font-size: 0.9em;
   color: #777;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Chatbot - Estilo WhatsApp (Solo Chatbot con toques dorados) */
-.chatbot {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: auto;
-  max-width: 50%;
-  height: auto;
-  max-height: 50vh;
-  background: #f0f8f5; /* Fondo claro similar a WhatsApp */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* Sombra dorada */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 200;
-  transform: translateY(0);
-  opacity: 1;
-  transition: none;
-  font-size: 0.8em;
-}
-
-.chatbot.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.chatbot-header {
-  background-color: #128c7e; /* Encabezado verde de WhatsApp (puedes cambiar a dorado si prefieres) */
-  color: #fff;
-  font-weight: bold;
-  padding: 8
+  box-shadow: 0 -2px 5px rgba
