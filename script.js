@@ -1,120 +1,279 @@
-// --- MENÚ RESPONSIVO ---
-  function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('active');
-  }
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  // --- CHATBOT ---
-  const chatbot = document.getElementById('chatbot');
-  const chatbotMessages = document.getElementById('chatbot-messages');
-  const chatbotInput = document.getElementById('chatbot-input');
-  const chatbotSend = document.querySelector('.chatbot-input button');
-  const chatbotToggle = document.querySelector('.chatbot-header .chatbot-toggle');
+const isFinePointer = window.matchMedia("(pointer: fine)").matches;
 
-  let isChatbotOpen = false;
-
-  function toggleChatbot() {
-    isChatbotOpen = !isChatbotOpen;
-    chatbot.classList.toggle('active');
-  }
-
-  function addMessage(message, isUser = false) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('chatbot-message');
-    if (isUser) {
-      messageDiv.classList.add('user-message');
-      messageDiv.textContent = message;
-    } else {
-      messageDiv.classList.add('bot-message');
-      messageDiv.textContent = message;
-    }
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-
-  function showTyping() {
-    const typingDiv = document.createElement('div');
-    typingDiv.classList.add('chatbot-message', 'bot-message', 'typing-indicator');
-    typingDiv.innerHTML = `
-      <span class="typing-dot"></span>
-      <span class="typing-dot"></span>
-      <span class="typing-dot"></span>
-    `;
-    chatbotMessages.appendChild(typingDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    return typingDiv;
-  }
-
-  function hideTyping(typingElement) {
-    if (typingElement) {
-      chatbotMessages.removeChild(typingElement);
-    }
-  }
-
-  function sendMessage() {
-    console.log("Función sendMessage()");
-    const userMessage = chatbotInput.value.trim();
-    if (userMessage === '') return;
-
-    addMessage(userMessage, true);
-    chatbotInput.value = '';
-
-    const typingIndicator = showTyping();
-    setTimeout(() => {
-      hideTyping(typingIndicator);
-      generateResponse(userMessage);
-    }, 1000); // Simular un breve tiempo de espera
-  }
-
-  function generateResponse(userInput) {
-    const text = userInput.toLowerCase();
-    let response = "";
-    let understood = false;
-
-    if (text.includes("hola") || text.includes("buenas") || text.includes("saludos") || text.includes("hey")) {
-      response = "¡Hola! ¿En qué puedo ayudarte hoy? Pregunta sobre nuestros servicios de automatización, marketing digital, asistentes virtuales o creación de contenido.";
-      understood = true;
-    } else if (text.includes("servicio") || text.includes("ofrecen") || text.includes("hacen")) {
-      response = "Ofrecemos una gama de servicios que incluyen automatización empresarial para optimizar procesos, marketing digital automatizado para el crecimiento, asistentes virtuales con IA para atención 24/7 y creación de contenido con inteligencia artificial.";
-      understood = true;
-    } else if (text.includes("automatización") || text.includes("procesos") || text.includes("optimizar") || text.includes("flujos de trabajo")) {
-      response = "La automatización empresarial implica la implementación de flujos de trabajo inteligentes para tareas repetitivas, lo que ahorra tiempo, reduce errores y mejora la eficiencia general de tu negocio.";
-      understood = true;
-    } else if (text.includes("marketing digital") || text.includes("campañas") || text.includes("clientes") || text.includes("crecer") || text.includes("leads")) {
-      response = "Nuestro marketing digital automatizado se enfoca en crear campañas eficientes que atraigan y conviertan clientes potenciales, permitiéndote enfocarte en el crecimiento de tu empresa.";
-      understood = true;
-    } else if (text.includes("asistente virtual") || text.includes("chatbot") || text.includes("atender") || text.includes("soporte") || text.includes("24/7")) {
-      response = "Los asistentes virtuales con IA (chatbots) pueden interactuar con tus clientes en cualquier momento, respondiendo preguntas frecuentes, brindando información y mejorando la experiencia del usuario.";
-      understood = true;
-    } else if (text.includes("contenido") || text.includes("textos") || text.includes("imágenes") || text.includes("publicaciones") || text.includes("crear") || text.includes("redes sociales")) {
-      response = "Utilizamos IA para generar contenido de calidad para diversas plataformas, incluyendo textos para tu sitio web, imágenes atractivas y publicaciones optimizadas para redes sociales.";
-      understood = true;
-    } else if (text.includes("nosotros") || text.includes("quiénes sois") || text.includes("empresa") || text.includes("equipo")) {
-      response = "En ALPHAOMEGATECH, somos un equipo de profesionales apasionados por la tecnología, el diseño y la automatización, dedicados a ayudar a negocios como el tuyo a alcanzar su máximo potencial.";
-      understood = true;
-    } else if (text.includes("contacto") || text.includes("hablar") || text.includes("escribir") || text.includes("llamar")) {
-      response = "Puedes ponerte en contacto con nosotros a través del botón de WhatsApp que ves en la página. ¡Estamos ansiosos por saber de ti!";
-      understood = true;
-    } else if (text.includes("cita") || text.includes("reunión") || text.includes("agendar")) {
-      response = "Para agendar una cita, la mejor manera es contactarnos a través de WhatsApp. Así podremos coordinar un horario que funcione para ambos.";
-      understood = true;
-    }
-
-    if (!understood) {
-      response = "Lo siento, no comprendo completamente tu pregunta. Por favor, intenta reformularla o pregunta sobre nuestros servicios principales: automatización, marketing digital, asistentes virtuales o creación de contenido.";
-    }
-
-    setTimeout(() => {
-      addMessage(response, false);
-    }, 1200); // Simular un breve tiempo de respuesta del bot
-  }
-
-  chatbotInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      sendMessage();
+/* ---------- i18n ---------- */
+function setLang(lang) {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const dict = translations[lang];
+    if (dict && dict[el.dataset.i18n] != null) {
+      el.innerHTML = dict[el.dataset.i18n];
     }
   });
+  document.documentElement.lang = lang;
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+  try {
+    localStorage.setItem("aot-lang", lang);
+  } catch (e) {
+    /* localStorage unavailable — ignore, language just won't persist */
+  }
+}
 
-  chatbotToggle.addEventListener('click', toggleChatbot);
+document.querySelectorAll(".lang-btn").forEach((btn) => {
+  btn.addEventListener("click", () => setLang(btn.dataset.lang));
+});
 
-  chatbot.classList.remove('active');
+let savedLang = "es";
+try {
+  savedLang = localStorage.getItem("aot-lang") || "es";
+} catch (e) {
+  /* ignore */
+}
+setLang(savedLang);
+
+/* ---------- Scroll progress bar ---------- */
+gsap.to("#progressBar", {
+  scaleX: 1,
+  ease: "none",
+  scrollTrigger: {
+    trigger: document.body,
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true,
+  },
+});
+
+/* ---------- Marquee de palabras clave (bucle infinito, se ralentiza con el ratón encima) ---------- */
+const marqueeTrack = document.getElementById("marqueeTrack");
+const marqueeTween = gsap.to(marqueeTrack, {
+  xPercent: -50,
+  duration: 18,
+  ease: "none",
+  repeat: -1,
+});
+marqueeTrack.addEventListener("pointerenter", () => marqueeTween.timeScale(0.15));
+marqueeTrack.addEventListener("pointerleave", () => marqueeTween.timeScale(1));
+
+/* ---------- Nav background on scroll ---------- */
+ScrollTrigger.create({
+  start: 0,
+  end: 99999,
+  onUpdate: (self) => {
+    document.getElementById("nav").style.background =
+      self.scroll() > 40 ? "rgba(10,10,10,0.85)" : "rgba(10,10,10,0.55)";
+  },
+});
+
+/* ---------- Hero entrance ---------- */
+// Divide el titular en caracteres para revelarlo letra por letra
+const heroSplit = new SplitText(".hero h1", { type: "chars, words" });
+gsap.set(heroSplit.chars, { autoAlpha: 0, y: 20 });
+
+gsap.timeline({ defaults: { duration: 0.9, ease: "power3.out" } })
+  .fromTo(".hero-logo", { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 })
+  .fromTo(".hero .eyebrow", { y: 15, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.5")
+  .to(heroSplit.chars, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.018, ease: "power3.out" }, "-=0.35")
+  .fromTo(".hero-sub", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.4")
+  .fromTo(".hero-ctas", { y: 15, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.5");
+
+/* ---------- Interacciones de ratón (solo en dispositivos con puntero fino) ---------- */
+if (isFinePointer) {
+  document.documentElement.classList.add("has-custom-cursor");
+
+  // Cursor personalizado: sigue el ratón y crece sobre elementos interactivos
+  const cursor = document.getElementById("cursorDot");
+  const cxTo = gsap.quickTo(cursor, "x", { duration: 0.15, ease: "power3" });
+  const cyTo = gsap.quickTo(cursor, "y", { duration: 0.15, ease: "power3" });
+
+  window.addEventListener("pointermove", (e) => {
+    cxTo(e.clientX);
+    cyTo(e.clientY);
+  });
+
+  document.querySelectorAll("a, button, .card").forEach((el) => {
+    el.addEventListener("pointerenter", () => cursor.classList.add("hover"));
+    el.addEventListener("pointerleave", () => cursor.classList.remove("hover"));
+  });
+
+  // Botones magnéticos: se atraen levemente hacia el cursor
+  document.querySelectorAll(".btn, .contact-btn").forEach((btn) => {
+    const bxTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
+    const byTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+
+    btn.addEventListener("pointermove", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const relX = e.clientX - (rect.left + rect.width / 2);
+      const relY = e.clientY - (rect.top + rect.height / 2);
+      bxTo(relX * 0.35);
+      byTo(relY * 0.35);
+    });
+
+    btn.addEventListener("pointerleave", () => {
+      bxTo(0);
+      byTo(0);
+    });
+  });
+
+  // Tarjetas de servicios con inclinación 3D según la posición del cursor
+  document.querySelectorAll(".card").forEach((card) => {
+    const rxTo = gsap.quickTo(card, "rotationX", { duration: 0.5, ease: "power3" });
+    const ryTo = gsap.quickTo(card, "rotationY", { duration: 0.5, ease: "power3" });
+    const zTo = gsap.quickTo(card, "z", { duration: 0.5, ease: "power3" });
+
+    card.addEventListener("pointermove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width - 0.5;
+      const relY = (e.clientY - rect.top) / rect.height - 0.5;
+      ryTo(relX * 14);
+      rxTo(-relY * 14);
+      zTo(20);
+    });
+
+    card.addEventListener("pointerleave", () => {
+      rxTo(0);
+      ryTo(0);
+      zTo(0);
+    });
+  });
+}
+
+/* ---------- Slow hero glow drift ---------- */
+gsap.to(".glow-1", { x: 40, y: 30, duration: 8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+gsap.to(".glow-2", { x: -30, y: -20, duration: 9, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+/* ---------- Service cards reveal ---------- */
+gsap.utils.toArray(".card").forEach((card, i) => {
+  gsap.fromTo(
+    card,
+    { y: 40, autoAlpha: 0 },
+    {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.7,
+      ease: "power2.out",
+      delay: i * 0.08,
+      scrollTrigger: { trigger: card, start: "top 88%" },
+    }
+  );
+});
+
+/* ---------- Process line draw + steps reveal ---------- */
+gsap.to(".steps-line line", {
+  strokeDashoffset: 0,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".steps",
+    start: "top 80%",
+    end: "bottom 60%",
+    scrub: true,
+  },
+});
+
+gsap.utils.toArray(".step").forEach((step, i) => {
+  gsap.fromTo(
+    step,
+    { y: 30, autoAlpha: 0 },
+    {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: i * 0.12,
+      scrollTrigger: { trigger: step, start: "top 90%" },
+    }
+  );
+
+  // Cuenta el número del paso desde 00 en vez de mostrarlo ya escrito
+  const numEl = step.querySelector(".step-num");
+  const target = parseInt(numEl.textContent, 10);
+  numEl.textContent = "00";
+  const counter = { val: 0 };
+  gsap.to(counter, {
+    val: target,
+    duration: 1,
+    ease: "power1.out",
+    delay: i * 0.12,
+    scrollTrigger: { trigger: step, start: "top 90%" },
+    onUpdate: () => {
+      numEl.textContent = String(Math.round(counter.val)).padStart(2, "0");
+    },
+  });
+});
+
+/* ---------- About reveal ---------- */
+gsap.fromTo(
+  ".about-mark, .about .eyebrow, .about h2, .about-body, .about-byline, .about-photo",
+  { y: 25, autoAlpha: 0 },
+  {
+    y: 0,
+    autoAlpha: 1,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".about", start: "top 80%" },
+  }
+);
+
+/* ---------- Why reveal ---------- */
+gsap.utils.toArray(".why-item").forEach((item, i) => {
+  gsap.fromTo(
+    item,
+    { y: 25, autoAlpha: 0 },
+    {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: i * 0.08,
+      scrollTrigger: { trigger: item, start: "top 90%" },
+    }
+  );
+});
+
+/* ---------- FAQ: acordeón + reveal ---------- */
+gsap.utils.toArray(".faq-item").forEach((item, i) => {
+  gsap.fromTo(
+    item,
+    { y: 20, autoAlpha: 0 },
+    {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.5,
+      ease: "power2.out",
+      delay: i * 0.05,
+      scrollTrigger: { trigger: item, start: "top 92%" },
+    }
+  );
+
+  const question = item.querySelector(".faq-question");
+  const answer = item.querySelector(".faq-answer");
+
+  question.addEventListener("click", () => {
+    const isOpen = item.classList.contains("open");
+    const onDone = () => ScrollTrigger.refresh();
+    if (isOpen) {
+      gsap.to(answer, { height: 0, duration: 0.35, ease: "power2.inOut", onComplete: onDone });
+    } else {
+      gsap.to(answer, { height: "auto", duration: 0.4, ease: "power2.inOut", onComplete: onDone });
+    }
+    item.classList.toggle("open", !isOpen);
+  });
+});
+
+/* ---------- Contact reveal ---------- */
+gsap.fromTo(
+  ".contact .eyebrow, .contact h2, .contact-sub, .contact-btn",
+  { y: 25, autoAlpha: 0 },
+  {
+    y: 0,
+    autoAlpha: 1,
+    duration: 0.6,
+    stagger: 0.06,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".contact", start: "top 85%" },
+  }
+);
+
+window.addEventListener("load", () => ScrollTrigger.refresh());
