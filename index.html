@@ -1,118 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALPHAOMEGATECH</title>
+  <title>Alpha Omega Tech</title>
+  <meta name="description" content="Consultoría de IA para PyMEs: diagnóstico operativo, consultoría lean, formación corporativa y CAIO externalizado." />
+  <link rel="icon" href="images/logo.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body {
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    body.loaded {
-      opacity: 1;
-    }
-  </style>
 </head>
-<body class="loaded">
+<body>
 
-  <div id="particles-js"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
-  <nav class="navbar">
-   <div class="logo-title">
-    <img src="assets/img/logo.png" alt="Logo" class="logo-nav animate-logo" />
-    <span class="title">ALPHAOMEGATECH</span>
-   </div>
-   <div class="menu-toggle" onclick="toggleMenu(); toggleChatbot();"><i class="fas fa-robot"></i></div>
-   <ul class="menu" id="menu">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Sobre Nosotros</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-   </ul>
-  </nav>
-
-  <div class="chatbot" id="chatbot">
-   <div class="chatbot-header">
-    <span><i class="fas fa-robot"></i> ¿Necesitas ayuda?</span>
-    <button class="chatbot-toggle">X</button>
-   </div>
-   <div class="chatbot-messages" id="chatbot-messages"></div>
-   <div class="chatbot-input">
-    <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
-    <button class="chatbot-send" onclick="sendMessage()">Enviar</button>
-   </div>
-  </div>
-
-  <header class="hero" data-aos="fade-down" data-aos-duration="800">
-    <div class="overlay">
-      <img src="assets/img/logo.png" alt="Logo ALPHAOMEGATECH" class="logo animate-logo" />
-      <h1 class="titulo">Automatiza, conecta, crece.</h1>
-      <p class="subtitulo">Inteligencia Artificial, Automatización y Marketing de Alto Nivel</p>
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="brand">
+      <span class="brand-icon" aria-hidden="true"></span>
+      <span class="brand-text">ALPHA<span class="brand-thin">OMEGA</span>TECH</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services" data-i18n="nav.services">Servicios</a>
+      <a href="#process" data-i18n="nav.process">Método</a>
+      <a href="#about" data-i18n="nav.about">Nosotros</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Idioma">
+      <button type="button" data-lang="es" class="lang-btn active">ES</button>
+      <button type="button" data-lang="en" class="lang-btn">EN</button>
     </div>
   </header>
 
-  <section class="servicios" id="servicios" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-in-out-quad">
-    <h2>Servicios</h2>
-    <div class="grid">
-      <div class="card" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
-        <img src="assets/img/img1.jpg" alt="Automatización Empresarial" />
-        <h3>Automatización Empresarial</h3>
-        <p>Optimiza tus procesos y ahorra tiempo con flujos inteligentes.</p>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="grid-pattern"></div>
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+    </div>
+
+    <img src="images/logo.png" alt="Alpha Omega Tech" class="hero-logo" />
+
+    <p class="eyebrow" data-i18n="hero.eyebrow">IA aplicada a resultados</p>
+    <h1 data-i18n="hero.title">Diagnosticamos. Priorizamos.<br />Implementamos IA que rinde.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">
+      Consultoría de IA para PyMEs: detectamos fallos de seguridad, cuellos de botella
+      y las oportunidades de mayor ROI — y las convertimos en una hoja de ruta accionable.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Agenda tu diagnóstico</a>
+      <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">Ver servicios</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <span data-i18n="marquee.text">IA · ROI · Diagnóstico · Lean · KPIs · Estrategia · </span>
+      <span data-i18n="marquee.text" aria-hidden="true">IA · ROI · Diagnóstico · Lean · KPIs · Estrategia · </span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <p class="eyebrow center" data-i18n="services.eyebrow">Qué hacemos</p>
+    <h2 class="center" data-i18n="services.title">Cuatro maneras de convertir IA en <span class="gold-text">resultado</span></h2>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="21" cy="21" r="13"/>
+            <line x1="30.2" y1="30.2" x2="42" y2="42"/>
+            <path d="M14 21h5l2-6 3 12 2-6h5"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.s1.title">Diagnóstico Operativo y Hoja de Ruta de IA</h3>
+        <p data-i18n="services.s1.body">Auditoría completa de tus procesos para detectar fallos de seguridad, cuellos de botella operativos y las oportunidades de IA con mayor retorno de inversión.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 5v7M24 36v7M5 24h7M36 24h7M10.8 10.8l5 5M32.2 32.2l5 5M10.8 37.2l5-5M32.2 15.8l5-5"/>
+            <circle cx="24" cy="24" r="9"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.s2.title">Consultoría Lean para PyMEs</h3>
+        <p data-i18n="services.s2.body">Soluciones modulares y ágiles, pensadas para un bajo coste de mantenimiento y rentabilidad desde el primer mes.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 18L24 9l20 9-20 9L4 18z"/>
+            <path d="M14 22.5v8.5c0 2.2 4.5 5 10 5s10-2.8 10-5v-8.5"/>
+            <path d="M40 18v11"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.s3.title">Formación Corporativa de Equipos</h3>
+        <p data-i18n="services.s3.body">Capacitación técnica práctica: flujos de trabajo con IA adaptados al sector y al día a día de tu equipo.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="24" r="18"/>
+            <path d="M31.5 16.5l-5.5 11-11 5.5 5.5-11 11-5.5z"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.s4.title">CAIO Externalizado</h3>
+        <p data-i18n="services.s4.body">8 semanas de intervención directa como tu Chief AI Officer: dirección estratégica, validación de prototipos y KPIs claros.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <p class="eyebrow center" data-i18n="process.eyebrow">Cómo trabajamos</p>
+    <h2 class="center" data-i18n="process.title">Un <span class="gold-text">método</span>, no una promesa</h2>
+
+    <div class="steps">
+      <svg class="steps-line" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="0" y1="0.5" x2="100" y2="0.5" vector-effect="non-scaling-stroke" />
+      </svg>
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <h4 data-i18n="process.p1.title">Diagnóstico</h4>
+        <p data-i18n="process.p1.body">Auditamos procesos, datos y riesgos.</p>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
-        <img src="assets/img/img2.jpg" alt="Marketing Digital Automatizado" />
-        <h3>Marketing Digital Automatizado</h3>
-        <p>Campañas que trabajan solas mientras tú te enfocas en crecer.</p>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h4 data-i18n="process.p2.title">Priorización</h4>
+        <p data-i18n="process.p2.body">Identificamos las oportunidades de mayor ROI.</p>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
-        <img src="assets/img/img3.jpg" alt="Asistentes Virtuales IA" />
-        <h3>Asistentes Virtuales IA</h3>
-        <p>Atiende 24/7 con chatbots y asistentes personalizados.</p>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h4 data-i18n="process.p3.title">Implementación</h4>
+        <p data-i18n="process.p3.body">Desplegamos soluciones lean y medibles.</p>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="600">
-        <img src="assets/img/img4.jpg" alt="Contenido IA" />
-        <h3>Contenido IA</h3>
-        <p>Crea textos, imágenes y publicaciones con inteligencia artificial.</p>
+      <div class="step">
+        <span class="step-num">04</span>
+        <h4 data-i18n="process.p4.title">Medición</h4>
+        <p data-i18n="process.p4.body">KPIs claros y ajuste continuo.</p>
       </div>
     </div>
   </section>
 
-  <section class="nosotros" id="nosotros" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-in-out-quad">
-    <h2>Sobre Nosotros</h2>
-    <p>En ALPHAOMEGATECH impulsamos negocios combinando tecnología, diseño y automatización de vanguardia.</p>
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-mark" aria-hidden="true">ΑΩ</div>
+    <p class="eyebrow" data-i18n="about.eyebrow">Sobre nosotros</p>
+    <h2 data-i18n="about.title">La persona detrás de <span class="gold-text">Alpha Omega Tech</span></h2>
+    <p class="about-body" data-i18n="about.body">
+      Soy Joel Herrera, fundador de Alpha Omega Tech y gestor administrativo especializado en inteligencia artificial.
+      Llevo más de dos años formándome a fondo en IA aplicada a empresas — no de forma teórica, sino para resolver
+      problemas reales. Creo en el trato directo: soy yo quien analiza tu negocio, prioriza dónde está el mayor
+      retorno, y te acompaña en cada paso de la implementación. Mi objetivo es simple: que la IA deje de ser una
+      promesa abstracta y se convierta en resultados medibles para tu empresa.
+    </p>
+    <p class="about-byline gold-text" data-i18n="about.byline">— Joel Herrera, Fundador &amp; Consultor de IA</p>
+
+    <div class="about-photo" id="aboutPhoto">
+      <div class="about-photo-inner">
+        <span class="gold-text">JH</span>
+      </div>
+    </div>
   </section>
 
-  <section class="contacto" id="contacto" data-aos="fade-left" data-aos-duration="800" data-aos-easing="ease-in-out-quad">
-    <h2>Contáctanos</h2>
-    <p>¿Listo para llevar tu empresa al siguiente nivel?</p>
-    <a href="https://wa.me/1234567890" class="boton-ws" target="_blank">Escríbenos por WhatsApp</a>
+  <!-- WHY -->
+  <section class="why" id="why">
+    <p class="eyebrow center" data-i18n="why.eyebrow">Por qué trabajar conmigo</p>
+    <h2 class="center" data-i18n="why.title">Cuatro cosas que no vas a tener que negociar</h2>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="why-check" aria-hidden="true">✓</span>
+        <div>
+          <h4 data-i18n="why.w1.title">Trato 100% directo</h4>
+          <p data-i18n="why.w1.body">Hablas conmigo, no con un equipo comercial ni intermediarios.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-check" aria-hidden="true">✓</span>
+        <div>
+          <h4 data-i18n="why.w2.title">Sin permanencia forzada</h4>
+          <p data-i18n="why.w2.body">Sin contratos largos que te aten más allá de lo que necesitas.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-check" aria-hidden="true">✓</span>
+        <div>
+          <h4 data-i18n="why.w3.title">Formación incluida</h4>
+          <p data-i18n="why.w3.body">No solo implemento: capacito a tu equipo para que sea autónomo después.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-check" aria-hidden="true">✓</span>
+        <div>
+          <h4 data-i18n="why.w4.title">Respuesta en menos de 5 minutos</h4>
+          <p data-i18n="why.w4.body">Disponibilidad real cuando la necesitas, no una promesa vacía.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <p>© 2025 ALPHAOMEGATECH. Todos los derechos reservados.</p>
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <p class="eyebrow center" data-i18n="faq.eyebrow">Preguntas frecuentes</p>
+    <h2 class="center" data-i18n="faq.title">Antes de que preguntes</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span data-i18n="faq.q1">¿Cómo empezamos a trabajar juntos?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq.a1">Agenda una llamada breve (o escríbeme por WhatsApp o email). Analizamos tu caso juntos y, según lo que encontremos, definimos si empezamos por un diagnóstico, consultoría lean, formación o un CAIO externalizado.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span data-i18n="faq.q2">¿Cuánto tarda el diagnóstico inicial?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq.a2">Varía según la complejidad del proyecto — lo concretamos juntos en la primera llamada.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span data-i18n="faq.q3">¿Trabajas solo en remoto o también en persona?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq.a3">Trabajo 100% en remoto con empresas de cualquier lugar, y también ofrezco reuniones presenciales en mi zona si lo prefieres.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span data-i18n="faq.q4">¿Cuánto cuesta?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq.a4">Cada proyecto es distinto. Tras el diagnóstico inicial te doy una propuesta a medida, sin sorpresas ni precios genéricos.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span data-i18n="faq.q5">¿Necesito conocimientos técnicos o de IA?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq.a5">No. Adapto el lenguaje y la formación al nivel de tu equipo, sin dar nada por sabido.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span data-i18n="faq.q6">¿Hay permanencia mínima?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq.a6">No. No exijo contratos largos ni permanencia forzada.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="eyebrow center" data-i18n="contact.eyebrow">Hablemos</p>
+    <h2 class="center" data-i18n="contact.title">Cuéntanos el reto de tu empresa</h2>
+    <p class="center contact-sub" data-i18n="contact.sub">Sin compromiso, te decimos por dónde empezar.</p>
+
+    <div class="contact-buttons">
+      <a class="contact-btn" href="mailto:omegatechalpha@gmail.com" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6.5l9 6 9-6"/></svg>
+        <span data-i18n="contact.email">Email</span>
+      </a>
+      <a class="contact-btn" href="https://wa.me/34643117993" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4.6A8 8 0 1112 20a8 8 0 01-4.4-1.3L4 20z"/><path d="M8.8 9.6c.2 2.6 2.6 5 5.2 5.2"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a class="contact-btn" href="https://www.linkedin.com/in/joel-santiago-herrera" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="3"/><line x1="7" y1="10" x2="7" y2="17"/><circle cx="7" cy="6.7" r="0.4" fill="currentColor"/><line x1="11.5" y1="10" x2="11.5" y2="17"/><path d="M11.5 13c0-1.8 1.3-3 3-3s3 1.2 3 3v4"/></svg>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>© 2026 Alpha Omega Tech</span>
+    <span data-i18n="footer.rights">Todos los derechos reservados.</span>
   </footer>
 
-  <a class="whatsapp" href="https://wa.me/1234567890" target="_blank">💬</a>
-
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-  <script>
-    AOS.init({
-      once: true, // Only animate elements once on scroll
-      duration: 600, // Default animation duration
-      easing: 'ease-out-cubic', // Default easing
-    });
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('particles.js loaded successfully.');
-    });
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
